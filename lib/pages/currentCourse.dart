@@ -16,7 +16,7 @@ class CurrentCourse extends StatelessWidget {
               color: Colors.cyan,
               shadows: [
                 Shadow(
-                  offset: Offset(0, 4),
+                  offset: const Offset(0, 4),
                   blurRadius: 4,
                   color: Colors.black.withOpacity(0.25),
                 ),
@@ -33,12 +33,12 @@ class CurrentCourse extends StatelessWidget {
             color: Colors.white,
             boxShadow: [
               BoxShadow(
-                offset: Offset(0, 4),
+                offset: const Offset(0, 4),
                 blurRadius: 4,
                 color: Colors.black.withOpacity(0.25),
               ),
             ],
-            borderRadius: BorderRadius.only(
+            borderRadius: const BorderRadius.only(
               topLeft: Radius.circular(30),
               topRight: Radius.circular(30),
             ),
@@ -47,7 +47,7 @@ class CurrentCourse extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.start, // Align items to the top
             crossAxisAlignment: CrossAxisAlignment.center, // Center horizontally
             children: [
-              SizedBox(height: 16.0), // Space from top
+              const SizedBox(height: 16.0), // Space from top
               Row(
                 mainAxisSize: MainAxisSize.min, // Wrap content
                 children: [ // Wrapped widgets inside children: []
@@ -58,7 +58,7 @@ class CurrentCourse extends StatelessWidget {
                       color: Colors.cyan,
                       borderRadius: BorderRadius.circular(27),
                     ),
-                    child: Center(
+                    child: const Center(
                       child: Text(
                         "Box 1",
                         style: TextStyle(
@@ -69,7 +69,7 @@ class CurrentCourse extends StatelessWidget {
                       ),
                     ),
                   ),
-                  SizedBox(width: 10), // Space between Box 1 and Box 2
+                  const SizedBox(width: 10), // Space between Box 1 and Box 2
                  Container(
                     width: 138,
                     height: 41,
@@ -77,7 +77,7 @@ class CurrentCourse extends StatelessWidget {
                       color: Colors.white,
                       borderRadius: BorderRadius.circular(27),
                     ),
-                    child: Center(
+                    child: const Center(
                       child: Text(
                         "Box 2",
                         style: TextStyle(
@@ -90,15 +90,15 @@ class CurrentCourse extends StatelessWidget {
                   ),
                 ],
               ),
-              SizedBox(height: 16.0), // Space from Box 2 to Box 3
+              const SizedBox(height: 16.0), // Space from Box 2 to Box 3
               Container(
                     width: 295,
                     height: 127,
                     decoration: BoxDecoration(
-                      color: Color(0xFFD9D9D9),
+                      color: const Color(0xFFD9D9D9),
                       borderRadius: BorderRadius.circular(28),
                     ),
-                    child: Center(
+                    child: const Center(
                       child: Text(
                         "Course 1",
                         style: TextStyle(

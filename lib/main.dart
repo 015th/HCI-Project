@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-//import 'package:flutter_application_1/pages/currentCourse.dart';
-import '../bottomNav.dart';
+import 'package:flutter_application_1/pages/login.dart';
+import 'package:flutter_application_1/pages/register.dart';
+import 'package:flutter_application_1/bottomNav.dart';
 
 void main() {
   runApp(const MyApp());
@@ -9,13 +10,17 @@ void main() {
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return  MaterialApp(
+    return MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: ThemeData(fontFamily: 'Nunito Sans'),
-      home: const NavigatorPage()
+      initialRoute: '/login',  // Start at login
+      routes: {
+        '/login': (context) => const LoginPage(),
+        '/register': (context) => const RegisterScreen(),
+        '/home': (context) => const NavigatorPage(),
+      },
     );
   }
 }

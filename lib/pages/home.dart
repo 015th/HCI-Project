@@ -13,7 +13,7 @@ class HomePage extends StatelessWidget {
             color: Colors.cyan,
             shadows: [
               Shadow(
-                offset: Offset(0, 4),
+                offset: const Offset(0, 4),
                 blurRadius: 4,
                 color: Colors.black.withOpacity(0.25)
               )
