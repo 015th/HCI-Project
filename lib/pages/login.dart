@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/bottomNav.dart';
+import 'package:flutter_application_1/pages/question.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -115,7 +116,7 @@ class _LoginPageState extends State<LoginPage> {
             // LOGIN BUTTON
             ElevatedButton(
               onPressed: () {
-                Navigator.pushReplacementNamed(context, '/home');
+                Navigator.pushReplacementNamed(context, '/question');
               },
               child: const Text('Sign in'),
             ),

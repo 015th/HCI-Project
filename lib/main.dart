@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_application_1/pages/login.dart';
 import 'package:flutter_application_1/pages/register.dart';
 import 'package:flutter_application_1/bottomNav.dart';
+import 'package:flutter_application_1/pages/question.dart';
 
 void main() {
   runApp(const MyApp());
@@ -20,6 +21,7 @@ class MyApp extends StatelessWidget {
         '/login': (context) => const LoginPage(),
         '/register': (context) => const RegisterScreen(),
         '/home': (context) => const NavigatorPage(),
+        '/question': (context) => QuestionScreen(),
       },
     );
   }
