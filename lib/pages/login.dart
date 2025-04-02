@@ -1,4 +1,7 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/auth/auth_service.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -8,33 +11,43 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
-  final _usernameController = TextEditingController();
+  final _auth = AuthService();
+  final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
   bool _rememberMe = false;
 
   @override
   void dispose() {
-    _usernameController.dispose();
+    _emailController.dispose();
     _passwordController.dispose();
     super.dispose();
   }
 
 // Validation function for login
-  void _validateLogin() {
-    String username = _usernameController.text.trim();
+  void _LoginPressed() async {
+    String email = _emailController.text.trim();
     String password = _passwordController.text.trim();
 
-    if (username.isEmpty || password.isEmpty) {
+    if (email.isEmpty || password.isEmpty) {
       // Show an error message if any field is empty
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
-          content: Text('Please enter both username and password'),
+          content: Text('Please enter both email and password'),
           backgroundColor: Colors.red,
         ),
       );
     } else {
-      // Proceed to the next page if the fields are filled
-      Navigator.pushReplacementNamed(context, '/question');
+      // User creation logic
+      final user = await _auth.loginUserWithEmailAndPassword(
+        _emailController.text, 
+        _passwordController.text,
+      );
+      if (user != null) {
+        log("User Login Successfully");
+        
+        // Proceed to the next page if the fields are filled
+        Navigator.pushReplacementNamed(context, "/question");  // Navigate to login screen
+      }
     }
   }
 
@@ -73,16 +86,16 @@ class _LoginPageState extends State<LoginPage> {
             ),
             const SizedBox(height: 10),
 
-            // USERNAME FIELD
+            // email FIELD
             const Align(
               alignment: Alignment.centerLeft,
-              child: Text('Username',
+              child: Text('Email',
                   style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold)),
             ),
             TextField(
-              controller: _usernameController,
+              controller: _emailController,
               decoration: const InputDecoration(
-                hintText: 'Enter Username',
+                hintText: 'Enter Email',
                 border: OutlineInputBorder(),
               ),
             ),
@@ -134,10 +147,10 @@ class _LoginPageState extends State<LoginPage> {
             ),
             const SizedBox(height: 10),
 
-            // LOGIN BUTTON
+            
             // LOGIN BUTTON
             ElevatedButton(
-              onPressed: _validateLogin, // Validate before navigating
+              onPressed: _LoginPressed, // Validate before navigating
               child: const Text('Sign in'),
             ),
             const SizedBox(height: 10),

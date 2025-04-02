@@ -1,4 +1,7 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/auth/auth_service.dart';
 
 class RegisterScreen extends StatefulWidget {
   const RegisterScreen({super.key});
@@ -9,6 +12,9 @@ class RegisterScreen extends StatefulWidget {
 
 class _RegisterScreenState extends State<RegisterScreen> {
   final _formKey = GlobalKey<FormState>();
+
+final _auth = AuthService();
+
 
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _usernameController = TextEditingController();
@@ -121,24 +127,12 @@ class _RegisterScreenState extends State<RegisterScreen> {
 
                 // Create Account Button
                 SizedBox(
-                  width: double.infinity,
-                  child: ElevatedButton(
-                    onPressed: () {
-                      if (_formKey.currentState!.validate()) {
-                        if (!_isChecked) {
-                          ScaffoldMessenger.of(context).showSnackBar(
-                            const SnackBar(
-                                content: Text(
-                                    "You must agree to the privacy policy")),
-                          );
-                        } else {
-                          Navigator.pushReplacementNamed(context, "/login");
-                        }
-                      }
-                    },
-                    child: const Text("Create Account"),
-                  ),
+                width: double.infinity,
+                child: ElevatedButton(
+                  onPressed: () => _onCreateAccountPressed(context),
+                  child: const Text("Create Account"),
                 ),
+              ),
               ],
             ),
           ),
@@ -235,4 +229,25 @@ class _RegisterScreenState extends State<RegisterScreen> {
       ),
     );
   }
+
+  void _onCreateAccountPressed(BuildContext context) async {
+  if (_formKey.currentState!.validate()) {
+    if (!_isChecked) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(content: Text("You must agree to the privacy policy")),
+      );
+    } else {
+      // User creation logic
+      final user = await _auth.createUserWithEmailAndPassword(
+        _emailController.text, 
+        _passwordController.text,
+      );
+      if (user != null) {
+        log("User Created Successfully");
+        Navigator.pushReplacementNamed(context, "/login");  // Navigate to login screen
+      }
+    }
+  }
+}
+
 }

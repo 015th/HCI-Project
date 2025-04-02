@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "284309481830",
+    "project_id": "fir-extend",
+    "storage_bucket": "fir-extend.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:284309481830:android:16889d45be5a2d8c8600a7",
+        "android_client_info": {
+          "package_name": "com.example.flutter_application_1"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "284309481830-v9hqorlipsrkcqccultf9a53c4k84k2k.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBZfiD3jHkIYN2C-ZwFbzwnKt0sDIeBids"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "284309481830-v9hqorlipsrkcqccultf9a53c4k84k2k.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
