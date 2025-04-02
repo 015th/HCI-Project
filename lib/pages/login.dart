@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/bottomNav.dart';
-import 'package:flutter_application_1/pages/question.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -19,6 +17,25 @@ class _LoginPageState extends State<LoginPage> {
     _usernameController.dispose();
     _passwordController.dispose();
     super.dispose();
+  }
+
+// Validation function for login
+  void _validateLogin() {
+    String username = _usernameController.text.trim();
+    String password = _passwordController.text.trim();
+
+    if (username.isEmpty || password.isEmpty) {
+      // Show an error message if any field is empty
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text('Please enter both username and password'),
+          backgroundColor: Colors.red,
+        ),
+      );
+    } else {
+      // Proceed to the next page if the fields are filled
+      Navigator.pushReplacementNamed(context, '/question');
+    }
   }
 
   @override
@@ -59,7 +76,8 @@ class _LoginPageState extends State<LoginPage> {
             // USERNAME FIELD
             const Align(
               alignment: Alignment.centerLeft,
-              child: Text('Username', style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold)),
+              child: Text('Username',
+                  style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold)),
             ),
             TextField(
               controller: _usernameController,
@@ -73,7 +91,8 @@ class _LoginPageState extends State<LoginPage> {
             // PASSWORD FIELD
             const Align(
               alignment: Alignment.centerLeft,
-              child: Text('Password', style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold)),
+              child: Text('Password',
+                  style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold)),
             ),
             TextField(
               controller: _passwordController,
@@ -106,7 +125,9 @@ class _LoginPageState extends State<LoginPage> {
                   onPressed: () {},
                   child: const Text(
                     'Forgot Password?',
-                    style: TextStyle(decoration: TextDecoration.underline, color: Colors.blue),
+                    style: TextStyle(
+                        decoration: TextDecoration.underline,
+                        color: Colors.blue),
                   ),
                 ),
               ],
@@ -114,10 +135,9 @@ class _LoginPageState extends State<LoginPage> {
             const SizedBox(height: 10),
 
             // LOGIN BUTTON
+            // LOGIN BUTTON
             ElevatedButton(
-              onPressed: () {
-                Navigator.pushReplacementNamed(context, '/question');
-              },
+              onPressed: _validateLogin, // Validate before navigating
               child: const Text('Sign in'),
             ),
             const SizedBox(height: 10),

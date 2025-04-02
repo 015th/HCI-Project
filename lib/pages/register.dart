@@ -15,7 +15,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
   final TextEditingController _fullNameController = TextEditingController();
   final TextEditingController _dateOfBirthController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
-  final TextEditingController _confirmPasswordController = TextEditingController();
+  final TextEditingController _confirmPasswordController =
+      TextEditingController();
 
   bool _isChecked = false;
   bool _isPasswordVisible = false;
@@ -70,7 +71,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
                 _buildTextField("Email Address", _emailController,
                     TextInputType.emailAddress, validator: (value) {
                   if (value!.isEmpty) return "Please enter your email";
-                  if (!RegExp(r"^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$")
+                  if (!RegExp(
+                          r"^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$")
                       .hasMatch(value)) {
                     return "Enter a valid email";
                   }
@@ -78,12 +80,12 @@ class _RegisterScreenState extends State<RegisterScreen> {
                 }),
 
                 // Username Field
-                _buildTextField("Username", _usernameController,
-                    TextInputType.text),
+                _buildTextField(
+                    "Username", _usernameController, TextInputType.text),
 
                 // Full Name Field
-                _buildTextField("Full Name", _fullNameController,
-                    TextInputType.text),
+                _buildTextField(
+                    "Full Name", _fullNameController, TextInputType.text),
 
                 // Date of Birth with Picker
                 _buildDateOfBirthField(),
@@ -109,7 +111,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       },
                     ),
                     const Expanded(
-                      child: Text("I have read and agree to the privacy policy"),
+                      child:
+                          Text("I have read and agree to the privacy policy"),
                     ),
                   ],
                 ),
@@ -158,8 +161,9 @@ class _RegisterScreenState extends State<RegisterScreen> {
           border: OutlineInputBorder(),
         ),
         validator: validator ??
-            (value) =>
-                value!.isEmpty ? "Please enter $label" : null, // Default validator
+            (value) => value!.isEmpty
+                ? "Please enter $label"
+                : null, // Default validator
       ),
     );
   }
@@ -192,7 +196,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
       padding: const EdgeInsets.symmetric(vertical: 8),
       child: TextFormField(
         controller: controller,
-        obscureText: isConfirm ? !_isConfirmPasswordVisible : !_isPasswordVisible,
+        obscureText:
+            isConfirm ? !_isConfirmPasswordVisible : !_isPasswordVisible,
         decoration: InputDecoration(
           labelText: label,
           border: OutlineInputBorder(),
@@ -202,7 +207,9 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   ? (_isConfirmPasswordVisible
                       ? Icons.visibility
                       : Icons.visibility_off)
-                  : (_isPasswordVisible ? Icons.visibility : Icons.visibility_off),
+                  : (_isPasswordVisible
+                      ? Icons.visibility
+                      : Icons.visibility_off),
             ),
             onPressed: () {
               setState(() {
