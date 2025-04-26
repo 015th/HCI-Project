@@ -1,7 +1,16 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
-class CurrentCourse extends StatelessWidget {
+class CurrentCourse extends StatefulWidget {
   const CurrentCourse({super.key});
+
+  @override
+  State<CurrentCourse> createState() => _CurrentCourseState();
+}
+
+class _CurrentCourseState extends State<CurrentCourse> {
+  // Track selected box
+  int selectedBox = 1;
 
   @override
   Widget build(BuildContext context) {
@@ -44,75 +53,104 @@ class CurrentCourse extends StatelessWidget {
             ),
           ),
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.start, // Align items to the top
-            crossAxisAlignment: CrossAxisAlignment.center, // Center horizontally
+            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              const SizedBox(height: 16.0), // Space from top
+              const SizedBox(height: 16.0),
               Row(
-                mainAxisSize: MainAxisSize.min, // Wrap content
-                children: [ // Wrapped widgets inside children: []
-                  Container(
-                    width: 138,
-                    height: 41,
-                    decoration: BoxDecoration(
-                      color: Colors.cyan,
-                      borderRadius: BorderRadius.circular(27),
-                    ),
-                    child: const Center(
-                      child: Text(
-                        "Box 1",
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontWeight: FontWeight.bold,
-                          fontSize: 16,
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  GestureDetector(
+                    onTap: () {
+                      setState(() {
+                        selectedBox = 1;
+                      });
+                    },
+                    child: Container(
+                      width: 138,
+                      height: 41,
+                      decoration: BoxDecoration(
+                        color: selectedBox == 1 ? Colors.cyan : Colors.white,
+                        borderRadius: BorderRadius.circular(27),
+                        border: Border.all(color: Colors.cyan),
+                      ),
+                      child: Center(
+                        child: Text(
+                          "Box 1",
+                          style: TextStyle(
+                            color: selectedBox == 1 ? Colors.white : Colors.black,
+                            fontWeight: FontWeight.bold,
+                            fontSize: 16,
+                          ),
                         ),
                       ),
                     ),
                   ),
-                  const SizedBox(width: 10), // Space between Box 1 and Box 2
-                 Container(
-                    width: 138,
-                    height: 41,
-                    decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.circular(27),
-                    ),
-                    child: const Center(
-                      child: Text(
-                        "Box 2",
-                        style: TextStyle(
-                          color: Colors.black,
-                          fontWeight: FontWeight.bold,
-                          fontSize: 16,
+                  const SizedBox(width: 10),
+                  GestureDetector(
+                    onTap: () {
+                      setState(() {
+                        selectedBox = 2;
+                      });
+                    },
+                    child: Container(
+                      width: 138,
+                      height: 41,
+                      decoration: BoxDecoration(
+                        color: selectedBox == 2 ? Colors.cyan : Colors.white,
+                        borderRadius: BorderRadius.circular(27),
+                        border: Border.all(color: Colors.cyan),
+                      ),
+                      child: Center(
+                        child: Text(
+                          "Completed",
+                          style: TextStyle(
+                            color: selectedBox == 2 ? Colors.white : Colors.black,
+                            fontWeight: FontWeight.bold,
+                            fontSize: 16,
+                          ),
                         ),
                       ),
                     ),
                   ),
                 ],
               ),
-              const SizedBox(height: 16.0), // Space from Box 2 to Box 3
-              Container(
-                    width: 295,
-                    height: 127,
-                    decoration: BoxDecoration(
-                      color: const Color(0xFFD9D9D9),
-                      borderRadius: BorderRadius.circular(28),
-                    ),
-                    child: const Center(
-                      child: Text(
-                        "Course 1",
-                        style: TextStyle(
-                          color: Colors.black,
-                          fontWeight: FontWeight.bold,
-                          fontSize: 16,
+              const SizedBox(height: 16.0),
+
+              // Scrollable list based on selected box
+              Expanded(
+                child: ListView.builder(
+                  padding: const EdgeInsets.symmetric(horizontal: 20),
+                  itemCount: selectedBox == 1 ? 5 : 3, // Example: 5 items for Box 1, 3 items for Box 2
+                  itemBuilder: (context, index) {
+                    return Container(
+                      margin: const EdgeInsets.only(bottom: 16),
+                      width: double.infinity,
+                      height: 127,
+                      decoration: BoxDecoration(
+                        color: const Color(0xFFD9D9D9),
+                        borderRadius: BorderRadius.circular(28),
+                      ),
+                      child: Center(
+                        child: Text(
+                          selectedBox == 1
+                              ? 'Box 1.${index + 1}' // Box 1.1, Box 1.2, Box 1.3...
+                              : 'Box 2.${index + 1}', // Box 2.1, Box 2.2, Box 2.3...
+                          style: const TextStyle(
+                            color: Colors.black,
+                            fontWeight: FontWeight.bold,
+                            fontSize: 16,
+                          ),
                         ),
                       ),
-                    ),
-                  ),
+                    );
+                  },
+                ),
+              ),
             ],
           ),
         ),
       ),
-    ); // Scaffold
+    );
   }
 }

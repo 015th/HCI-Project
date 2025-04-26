@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/pages/currentCourse.dart';
 import 'package:flutter_application_1/pages/home.dart';
+import 'package:flutter_application_1/pages/profile.dart';
+import 'package:flutter_application_1/pages/savedCourse.dart';
 
 class NavigatorPage extends StatefulWidget {
   const NavigatorPage({super.key});
@@ -16,8 +18,8 @@ class _NavigatorPageState extends State<NavigatorPage> {
   List<Widget> screens = [
     const HomePage(),
     const CurrentCourse(),
-    // MySavedScreen(),
-    // MyProfileScreen(),
+    const Bookmark(),
+    const ProfilePage(),
   ];
 
   @override
