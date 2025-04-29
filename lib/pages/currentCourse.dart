@@ -1,16 +1,22 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter_application_1/courseService.dart';
 
 class CurrentCourse extends StatefulWidget {
   const CurrentCourse({super.key});
 
   @override
   State<CurrentCourse> createState() => _CurrentCourseState();
+
 }
 
 class _CurrentCourseState extends State<CurrentCourse> {
   // Track selected box
   int selectedBox = 1;
+
+  final user = FirebaseAuth.instance.currentUser;
+  final CourseService _courseService = CourseService(); // Instance of CourseService
 
   @override
   Widget build(BuildContext context) {
@@ -76,9 +82,10 @@ class _CurrentCourseState extends State<CurrentCourse> {
                       ),
                       child: Center(
                         child: Text(
-                          "Box 1",
+                          "Ongoing",
                           style: TextStyle(
-                            color: selectedBox == 1 ? Colors.white : Colors.black,
+                            color:
+                                selectedBox == 1 ? Colors.white : Colors.black,
                             fontWeight: FontWeight.bold,
                             fontSize: 16,
                           ),
@@ -105,7 +112,8 @@ class _CurrentCourseState extends State<CurrentCourse> {
                         child: Text(
                           "Completed",
                           style: TextStyle(
-                            color: selectedBox == 2 ? Colors.white : Colors.black,
+                            color:
+                                selectedBox == 2 ? Colors.white : Colors.black,
                             fontWeight: FontWeight.bold,
                             fontSize: 16,
                           ),
@@ -117,36 +125,112 @@ class _CurrentCourseState extends State<CurrentCourse> {
               ),
               const SizedBox(height: 16.0),
 
-              // Scrollable list based on selected box
-              Expanded(
-                child: ListView.builder(
-                  padding: const EdgeInsets.symmetric(horizontal: 20),
-                  itemCount: selectedBox == 1 ? 5 : 3, // Example: 5 items for Box 1, 3 items for Box 2
-                  itemBuilder: (context, index) {
-                    return Container(
-                      margin: const EdgeInsets.only(bottom: 16),
-                      width: double.infinity,
-                      height: 127,
-                      decoration: BoxDecoration(
-                        color: const Color(0xFFD9D9D9),
-                        borderRadius: BorderRadius.circular(28),
-                      ),
-                      child: Center(
-                        child: Text(
-                          selectedBox == 1
-                              ? 'Box 1.${index + 1}' // Box 1.1, Box 1.2, Box 1.3...
-                              : 'Box 2.${index + 1}', // Box 2.1, Box 2.2, Box 2.3...
-                          style: const TextStyle(
-                            color: Colors.black,
-                            fontWeight: FontWeight.bold,
-                            fontSize: 16,
-                          ),
-                        ),
-                      ),
-                    );
-                  },
-                ),
-              ),
+              // Conditional rendering using spread operator
+              ...[
+                if (selectedBox == 1)
+                 StreamBuilder<QuerySnapshot>(
+                    stream: FirebaseFirestore.instance
+                         .collection('users')
+                         .doc(user!.uid)
+                         .collection('enrolled_courses')
+                         .snapshots(),
+                    builder: (context, snapshot) {
+                      if (snapshot.connectionState == ConnectionState.waiting) {
+                        return const CircularProgressIndicator();
+                      }
+
+                      final docs = snapshot.data?.docs ?? [];
+
+                      if (docs.isEmpty) {
+                        return const Text("No ongoing courses yet.");
+                      }
+
+                      return ListView.builder(
+                        shrinkWrap: true,
+                        itemCount: docs.length,
+                        itemBuilder: (context, index) {
+                          final course = docs[index].data() as Map<String, dynamic>;
+                          final title = course['Title'] ?? 'No title';
+                          final description = course['Description'] ?? 'No description';
+
+                          return Container(
+                            margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                            padding: const EdgeInsets.all(16),
+                            decoration: BoxDecoration(
+                              color: const Color(0xFFD9D9D9),
+                              borderRadius: BorderRadius.circular(12),
+                              boxShadow: [
+                                BoxShadow(
+                                  color: Colors.black.withOpacity(0.1),
+                                  offset: const Offset(0, 2),
+                                  blurRadius: 4,
+                                ),
+                              ],
+                            ),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                 Row(
+                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      Expanded(
+                                        child: Text(
+                                          title,
+                                          maxLines: 1,
+                                          overflow: TextOverflow.ellipsis,
+                                          style: const TextStyle(
+                                          fontSize: 16,
+                                          fontWeight: FontWeight.bold,
+                                          color: Colors.black,
+                                         ),
+                                        ),
+                                       ),
+                                      IconButton(
+                                         icon: const Icon(Icons.delete, color: Colors.red, size: 20),
+                                         padding: EdgeInsets.zero,
+                                         constraints: const BoxConstraints(),
+                                         onPressed: () {
+                                         _courseService.showDeleteDialog(context, () async {
+                                          await FirebaseFirestore.instance
+                                           .collection('users')
+                                           .doc(user!.uid)
+                                           .collection('enrolled_courses')
+                                           .doc(docs[index].id)
+                                           .delete();
+                                       });
+                                      },
+                                     ),
+                                    ],
+                                 ),
+                                const SizedBox(height: 8),
+                                Text(
+                                  description,
+                                  style: const TextStyle(
+                                    fontSize: 14,
+                                    color: Colors.black87,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          );
+                        },
+                      );
+
+                                          },
+                  )
+
+                else
+                  const Text(
+                    'Completed courses ',
+                    style: TextStyle(
+                      color: Colors.black,
+                      fontWeight: FontWeight.bold,
+                      fontSize: 16,
+                    ),
+                  ),
+
+
+              ],
             ],
           ),
         ),
