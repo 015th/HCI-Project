@@ -15,8 +15,8 @@ class _NavigatorPageState extends State<NavigatorPage> {
   int myIndex = 0;
 
   // List of Screens
-  List<Widget> screens = [
-    const HomePage(),
+  final List<Widget> screens = [
+    const HomePage(), // HomePage is one of the screens
     const CurrentCourse(),
     const Bookmark(),
     const ProfilePage(),
@@ -25,25 +25,33 @@ class _NavigatorPageState extends State<NavigatorPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: screens[myIndex], 
-      
+      body: screens[myIndex], // Display the selected screen
       bottomNavigationBar: BottomNavigationBar(
+        currentIndex: myIndex,
         onTap: (index) {
           setState(() {
-            myIndex = index;
+            myIndex = index; // Update the selected index
           });
         },
-        backgroundColor: Colors.black, // Set background color to black
-        selectedItemColor: Colors.cyan, // Active icon & text color
-        unselectedItemColor: Colors.grey, // Inactive icon & text color
-        currentIndex: myIndex,  // Set initial selected index
         items: const [
-          BottomNavigationBarItem(icon: Icon(Icons.search), label: 'Explore'),
-          BottomNavigationBarItem(icon: Icon(Icons.school), label: 'Courses'),
-          BottomNavigationBarItem(icon: Icon(Icons.bookmark), label: 'Saved'),
-          BottomNavigationBarItem(icon: Icon(Icons.person), label: 'Profile'),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.search),
+            label: 'Explore',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.school),
+            label: 'Courses',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.bookmark),
+            label: 'Saved',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.person),
+            label: 'Profile',
+          ),
         ],
       ),
-    ); // Scaffold
+    );
   }
 }
