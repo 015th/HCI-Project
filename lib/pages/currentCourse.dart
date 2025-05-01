@@ -2,6 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter_application_1/courseService.dart';
+import 'package:flutter_application_1/pages/course_details.dart';
 
 class CurrentCourse extends StatefulWidget {
   const CurrentCourse({super.key});
@@ -150,10 +151,19 @@ class _CurrentCourseState extends State<CurrentCourse> {
                         itemCount: docs.length,
                         itemBuilder: (context, index) {
                           final course = docs[index].data() as Map<String, dynamic>;
-                          final title = course['Title'] ?? 'No title';
-                          final description = course['Description'] ?? 'No description';
+                          final title = course['title'] ?? 'No title';
+                          final description = course['description'] ?? 'No description';
 
-                          return Container(
+                          return InkWell(
+                            onTap: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => CourseDetailPage(courseData: docs[index]),
+                                ),
+                              );
+                            },
+                           child:Container(
                             margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
                             padding: const EdgeInsets.all(16),
                             decoration: BoxDecoration(
@@ -212,6 +222,7 @@ class _CurrentCourseState extends State<CurrentCourse> {
                                 ),
                               ],
                             ),
+                          ),
                           );
                         },
                       );

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_application_1/courseService.dart';
+import 'package:flutter_application_1/pages/course_details.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -11,7 +12,7 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  final CollectionReference fetchData = FirebaseFirestore.instance.collection('courses');
+  final CollectionReference fetchData = FirebaseFirestore.instance.collection('testcourse');
   final user = FirebaseAuth.instance.currentUser;
   final CourseService _courseService = CourseService(); // Instance of CourseService
 
@@ -44,8 +45,16 @@ class _HomePageState extends State<HomePage> {
 
                     return Material(
                       child: ListTile(
-                        title: Text(documentSnapshot['Title']),
-                        subtitle: Text(documentSnapshot['Description']),
+                        title: Text(documentSnapshot['title']),
+                        subtitle: Text(documentSnapshot['description'],),
+                        onTap: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => CourseDetailPage(courseData: documentSnapshot),
+                            ),
+                          );
+                        },
                         trailing: IconButton(
                           icon: Icon(
                             isSaved ? Icons.favorite : Icons.favorite_border,  // Change icon based on saved state

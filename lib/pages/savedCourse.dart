@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_application_1/courseService.dart';
+import 'package:flutter_application_1/pages/course_details.dart';
 
 class Bookmark extends StatefulWidget {
   const Bookmark({super.key});
@@ -96,11 +97,20 @@ class _BookmarkState extends State<Bookmark> {
                               itemBuilder: (context, index) {
                                 final course = docs[index].data() as Map<String, dynamic>;
                                 final documentSnapshot = docs[index];
-                                String description = course['Description'] ?? 'No Description';
-                                String title = course['Title'] ?? 'No Title';
-                             
+                                String description = course['description'] ?? 'No Description';
+                                String title = course['title'] ?? 'No Title';
+                                String subject = course['subject'] ?? 'No Subject';
 
-                                return Container(
+                                return InkWell(
+                                   onTap: () {
+                                    Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                        builder: (context) => CourseDetailPage(courseData: documentSnapshot),
+                                      ),
+                                    );
+                                  },
+                                  child:Container(
                                   decoration: BoxDecoration(
                                     borderRadius: BorderRadius.circular(8),
                                     boxShadow: [
@@ -134,6 +144,7 @@ class _BookmarkState extends State<Bookmark> {
                                             color: Colors.black87,
                                           ),
                                         ),
+                                        
                                       ),
 
                                       // White section with title, lesson count and enroll button
@@ -165,6 +176,7 @@ class _BookmarkState extends State<Bookmark> {
                                                       color: Colors.black,
                                                     ),
                                                   ),
+                                                   
                                                 ),
                                                 IconButton(
                                                   icon: const Icon(Icons.delete, color: Colors.red, size: 20),
@@ -188,7 +200,7 @@ class _BookmarkState extends State<Bookmark> {
                                             Padding(
                                               padding: const EdgeInsets.only(top: 4, bottom: 8),
                                               child: Text(
-                                                "Lessons",
+                                                subject,
                                                 style: TextStyle(
                                                   fontSize: 14,
                                                   color: Colors.grey[700],
@@ -232,6 +244,7 @@ class _BookmarkState extends State<Bookmark> {
                                       ),
                                     ],
                                   ),
+                                ),
                                 );
                               },
                             );
