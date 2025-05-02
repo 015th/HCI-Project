@@ -20,17 +20,14 @@ class _ThirdQuestionScreenState extends State<ThirdQuestionScreen> {
 
   void _goToHomePage() {
     if (selectedDuration != null) {
-      Navigator.push(
+      Navigator.pushReplacementNamed(
         context,
-        MaterialPageRoute(
-          builder: (context) => HomePage(
-            userPreferences: {
-              'subjects': widget.selectedSubjects,
-              'difficulty': widget.selectedDifficulty,
-              'duration': selectedDuration,
-            },
-          ),
-        ),
+        '/home', // Navigate to the NavigatorPage route
+        arguments: {
+          'subjects': widget.selectedSubjects,
+          'difficulty': widget.selectedDifficulty,
+          'duration': selectedDuration,
+        },
       );
     } else {
       ScaffoldMessenger.of(context).showSnackBar(

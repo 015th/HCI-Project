@@ -8,7 +8,6 @@ import 'package:flutter_application_1/pages/login.dart';
 import 'package:flutter_application_1/pages/register.dart';
 import 'package:flutter_application_1/bottomNav.dart';
 import 'package:flutter_application_1/pages/question.dart';
-import 'package:flutter_application_1/pages/home.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -31,12 +30,12 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: ThemeData(fontFamily: 'Nunito Sans'),
-      initialRoute: '/login', // Start with the login screen
+      initialRoute: '/question', // Start with the question screen
       routes: {
         '/login': (context) => const LoginPage(),
         '/question': (context) => const QuestionScreen(),
         '/register': (context) => const RegisterScreen(),
-        '/home': (context) => const HomePage(), 
+        '/home': (context) => const NavigatorPage(), // Use NavigatorPage for home navigation
       },
     );
   }

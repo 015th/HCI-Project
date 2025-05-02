@@ -19,21 +19,21 @@
                     "title": "Lecture 2: Core Elements of Programs",
                     "content": "Focus on variables, expressions, and statements in Python.",
                     "resource": "https://ocw.mit.edu/courses/6-0001-introduction-to-computer-science-and-programming-in-python-fall-2016/pages/lecture-2/",
-                    "duration": "45 minutes"
+                    "duration": "60 minutes"
                 },
                 {
                     "lesson_id": "lesson_003",
                     "title": "Lecture 3: Control Structures",
                     "content": "Introduction to loops, conditionals, and branching statements.",
                     "resource": "https://ocw.mit.edu/courses/6-0001-introduction-to-computer-science-and-programming-in-python-fall-2016/pages/lecture-3/",
-                    "duration": "50 minutes"
+                    "duration": "75 minutes"
                 },
                 {
                     "lesson_id": "lesson_004",
                     "title": "Lecture 4: Functions",
                     "content": "Concept of functions in programming and their practical applications.",
                     "resource": "https://ocw.mit.edu/courses/6-0001-introduction-to-computer-science-and-programming-in-python-fall-2016/pages/lecture-4/",
-                    "duration": "50 minutes"
+                    "duration": "90 minutes"
                 }
             ]
         },
@@ -49,28 +49,28 @@
                     "title": "Limits and Continuity",
                     "content": "Understanding the concept of limits and why they are important in calculus.",
                     "resource": "https://ocw.mit.edu/courses/mathematics/18-01sc-single-variable-calculus-fall-2010/pages/unit-1/",
-                    "duration": "1 hour"
+                    "duration": "60 minutes"
                 },
                 {
                     "lesson_id": "lesson_002",
                     "title": "Derivatives",
                     "content": "Introduction to the concept of derivatives and its applications.",
                     "resource": "https://ocw.mit.edu/courses/mathematics/18-01sc-single-variable-calculus-fall-2010/pages/unit-2/",
-                    "duration": "1 hour"
+                    "duration": "75 minutes"
                 },
                 {
                     "lesson_id": "lesson_003",
                     "title": "Integrals",
                     "content": "Explaining integrals and their use in calculating areas under curves.",
                     "resource": "https://ocw.mit.edu/courses/mathematics/18-01sc-single-variable-calculus-fall-2010/pages/unit-3/",
-                    "duration": "1 hour"
+                    "duration": "90 minutes"
                 },
                 {
                     "lesson_id": "lesson_004",
                     "title": "Fundamentals of Integration",
                     "content": "Techniques and rules for integrating functions.",
                     "resource": "https://ocw.mit.edu/courses/mathematics/18-01sc-single-variable-calculus-fall-2010/pages/unit-4/",
-                    "duration": "1 hour"
+                    "duration": "120 minutes"
                 }
             ]
         },
@@ -86,28 +86,28 @@
                     "title": "Lecture 1: Introduction to Psychology",
                     "content": "Overview of the history, methods, and key concepts in psychology.",
                     "resource": "https://oyc.yale.edu/psychology/psyc-110/lecture-1",
-                    "duration": "1 hour"
+                    "duration": "45 minutes"
                 },
                 {
                     "lesson_id": "lesson_002",
                     "title": "Lecture 2: Brain and Behavior",
                     "content": "Exploring the relationship between the brain and behavior.",
                     "resource": "https://oyc.yale.edu/psychology/psyc-110/lecture-2",
-                    "duration": "1 hour"
+                    "duration": "60 minutes"
                 },
                 {
                     "lesson_id": "lesson_003",
                     "title": "Lecture 3: Sensation and Perception",
                     "content": "How we perceive and interpret sensory information.",
                     "resource": "https://oyc.yale.edu/psychology/psyc-110/lecture-3",
-                    "duration": "1 hour"
+                    "duration": "75 minutes"
                 },
                 {
                     "lesson_id": "lesson_004",
                     "title": "Lecture 4: Memory",
                     "content": "Understanding how memory works and its limitations.",
                     "resource": "https://oyc.yale.edu/psychology/psyc-110/lecture-4",
-                    "duration": "1 hour"
+                    "duration": "90 minutes"
                 }
             ]
         },
@@ -123,28 +123,28 @@
                     "title": "Lecture 1: Introduction to Economics",
                     "content": "Basic economic concepts, opportunity cost, and economic thinking.",
                     "resource": "https://ocw.mit.edu/courses/economics/14-01sc-principles-of-microeconomics-fall-2011/pages/lecture-1/",
-                    "duration": "1 hour"
+                    "duration": "60 minutes"
                 },
                 {
                     "lesson_id": "lesson_002",
                     "title": "Lecture 2: Supply and Demand",
                     "content": "Introduction to supply and demand curves and market equilibrium.",
                     "resource": "https://ocw.mit.edu/courses/economics/14-01sc-principles-of-microeconomics-fall-2011/pages/lecture-2/",
-                    "duration": "1 hour"
+                    "duration": "75 minutes"
                 },
                 {
                     "lesson_id": "lesson_003",
                     "title": "Lecture 3: Elasticity",
                     "content": "Understanding price elasticity of demand and supply.",
                     "resource": "https://ocw.mit.edu/courses/economics/14-01sc-principles-of-microeconomics-fall-2011/pages/lecture-3/",
-                    "duration": "1 hour"
+                    "duration": "90 minutes"
                 },
                 {
                     "lesson_id": "lesson_004",
                     "title": "Lecture 4: Market Structures",
                     "content": "Explaining different types of market structures (perfect competition, monopoly).",
                     "resource": "https://ocw.mit.edu/courses/economics/14-01sc-principles-of-microeconomics-fall-2011/pages/lecture-4/",
-                    "duration": "1 hour"
+                    "duration": "120 minutes"
                 }
             ]
         },
@@ -160,28 +160,28 @@
                     "title": "Lecture 1: Principles of Biology",
                     "content": "Introduction to the scientific method and basic biological principles.",
                     "resource": "https://ocw.mit.edu/courses/biology/7-01sc-fundamentals-of-biology-fall-2011/pages/lecture-1/",
-                    "duration": "1 hour"
+                    "duration": "45 minutes"
                 },
                 {
                     "lesson_id": "lesson_002",
                     "title": "Lecture 2: Cellular Biology",
                     "content": "Cell structure and function, DNA and RNA.",
                     "resource": "https://ocw.mit.edu/courses/biology/7-01sc-fundamentals-of-biology-fall-2011/pages/lecture-2/",
-                    "duration": "1 hour"
+                    "duration": "60 minutes"
                 },
                 {
                     "lesson_id": "lesson_003",
                     "title": "Lecture 3: Evolution",
                     "content": "Concepts of evolution, natural selection, and adaptation.",
                     "resource": "https://ocw.mit.edu/courses/biology/7-01sc-fundamentals-of-biology-fall-2011/pages/lecture-3/",
-                    "duration": "1 hour"
+                    "duration": "75 minutes"
                 },
                 {
                     "lesson_id": "lesson_004",
                     "title": "Lecture 4: Genetics",
                     "content": "Exploring inheritance and genetic variation.",
                     "resource": "https://ocw.mit.edu/courses/biology/7-01sc-fundamentals-of-biology-fall-2011/pages/lecture-4/",
-                    "duration": "1 hour"
+                    "duration": "90 minutes"
                 }
             ]
         },
@@ -197,28 +197,28 @@
                     "title": "Lecture 1: What is AI?",
                     "content": "Overview of artificial intelligence and its applications.",
                     "resource": "https://ocw.mit.edu/courses/electrical-engineering-and-computer-science/6-034-artificial-intelligence-fall-2010/pages/lecture-1/",
-                    "duration": "1 hour"
+                    "duration": "60 minutes"
                 },
                 {
                     "lesson_id": "lesson_002",
                     "title": "Lecture 2: Search Algorithms",
                     "content": "Introduction to search algorithms and problem-solving techniques.",
                     "resource": "https://ocw.mit.edu/courses/electrical-engineering-and-computer-science/6-034-artificial-intelligence-fall-2010/pages/lecture-2/",
-                    "duration": "1 hour"
+                    "duration": "75 minutes"
                 },
                 {
                     "lesson_id": "lesson_003",
                     "title": "Lecture 3: Machine Learning Basics",
                     "content": "Understanding the basics of machine learning and its applications.",
                     "resource": "https://ocw.mit.edu/courses/electrical-engineering-and-computer-science/6-034-artificial-intelligence-fall-2010/pages/lecture-3/",
-                    "duration": "1 hour"
+                    "duration": "90 minutes"
                 },
                 {
                     "lesson_id": "lesson_004",
                     "title": "Lecture 4: Neural Networks",
                     "content": "Introduction to neural networks and deep learning.",
                     "resource": "https://ocw.mit.edu/courses/electrical-engineering-and-computer-science/6-034-artificial-intelligence-fall-2010/pages/lecture-4/",
-                    "duration": "1 hour"
+                    "duration": "120 minutes"
                 }
             ]
         },
@@ -234,28 +234,28 @@
                     "title": "Lecture 1: Introduction to Data Science",
                     "content": "Overview of data science, its applications, and tools.",
                     "resource": "https://www.kaggle.com/learn/intro-to-data-science",
-                    "duration": "1 hour"
+                    "duration": "45 minutes"
                 },
                 {
                     "lesson_id": "lesson_002",
                     "title": "Lecture 2: Data Wrangling",
                     "content": "Techniques for cleaning and preparing data for analysis.",
                     "resource": "https://www.datacamp.com/courses/data-manipulation-with-pandas",
-                    "duration": "1 hour"
+                    "duration": "60 minutes"
                 },
                 {
                     "lesson_id": "lesson_003",
                     "title": "Lecture 3: Data Visualization",
                     "content": "Creating effective visualizations to communicate insights.",
                     "resource": "https://www.tableau.com/learn/training/20201",
-                    "duration": "1 hour"
+                    "duration": "75 minutes"
                 },
                 {
                     "lesson_id": "lesson_004",
                     "title": "Lecture 4: Introduction to Machine Learning",
                     "content": "Basics of machine learning and its applications in data science.",
                     "resource": "https://www.coursera.org/learn/machine-learning",
-                    "duration": "1 hour"
+                    "duration": "90 minutes"
                 }
             ]
         },
@@ -271,28 +271,28 @@
                     "title": "Lecture 1: Cybersecurity Basics",
                     "content": "Introduction to cybersecurity concepts and the importance of securing systems.",
                     "resource": "https://www.coursera.org/learn/intro-cybersecurity",
-                    "duration": "1 hour"
+                    "duration": "60 minutes"
                 },
                 {
                     "lesson_id": "lesson_002",
                     "title": "Lecture 2: Common Threats and Vulnerabilities",
                     "content": "Understanding common cybersecurity threats and how to mitigate them.",
                     "resource": "https://www.cisa.gov/cybersecurity-awareness-training",
-                    "duration": "1 hour"
+                    "duration": "75 minutes"
                 },
                 {
                     "lesson_id": "lesson_003",
                     "title": "Lecture 3: Network Security",
                     "content": "Basics of securing networks and preventing unauthorized access.",
                     "resource": "https://www.cybrary.it/course/network-security/",
-                    "duration": "1 hour"
+                    "duration": "90 minutes"
                 },
                 {
                     "lesson_id": "lesson_004",
                     "title": "Lecture 4: Cryptography",
                     "content": "Introduction to cryptographic techniques and their applications in cybersecurity.",
                     "resource": "https://www.khanacademy.org/computing/computer-science/cryptography",
-                    "duration": "1 hour"
+                    "duration": "120 minutes"
                 }
             ]
         },
@@ -308,28 +308,28 @@
                     "title": "Lecture 1: What is Cloud Computing?",
                     "content": "Introduction to cloud computing concepts and benefits.",
                     "resource": "https://aws.amazon.com/what-is-cloud-computing/",
-                    "duration": "1 hour"
+                    "duration": "45 minutes"
                 },
                 {
                     "lesson_id": "lesson_002",
                     "title": "Lecture 2: Cloud Service Models",
                     "content": "Understanding IaaS, PaaS, and SaaS models.",
                     "resource": "https://azure.microsoft.com/en-us/resources/cloud-computing-dictionary/what-is-saas/",
-                    "duration": "1 hour"
+                    "duration": "60 minutes"
                 },
                 {
                     "lesson_id": "lesson_003",
                     "title": "Lecture 3: Cloud Deployment Models",
                     "content": "Exploring public, private, and hybrid cloud deployment models.",
                     "resource": "https://www.ibm.com/cloud/learn/cloud-deployment-models",
-                    "duration": "1 hour"
+                    "duration": "75 minutes"
                 },
                 {
                     "lesson_id": "lesson_004",
                     "title": "Lecture 4: Cloud Security",
                     "content": "Basics of securing cloud environments and data.",
                     "resource": "https://www.coursera.org/learn/cloud-security",
-                    "duration": "1 hour"
+                    "duration": "90 minutes"
                 }
             ]
         },
@@ -345,28 +345,28 @@
                     "title": "Lecture 1: What is Blockchain?",
                     "content": "Introduction to blockchain technology and its key components.",
                     "resource": "https://www.ibm.com/topics/what-is-blockchain",
-                    "duration": "1 hour"
+                    "duration": "60 minutes"
                 },
                 {
                     "lesson_id": "lesson_002",
                     "title": "Lecture 2: How Blockchain Works",
                     "content": "Understanding the mechanics of blockchain and distributed ledgers.",
                     "resource": "https://www.blockchain.com/learning-portal/how-blockchain-works",
-                    "duration": "1 hour"
+                    "duration": "75 minutes"
                 },
                 {
                     "lesson_id": "lesson_003",
                     "title": "Lecture 3: Blockchain Applications",
                     "content": "Exploring real-world applications of blockchain technology.",
                     "resource": "https://www.coursera.org/learn/blockchain-basics",
-                    "duration": "1 hour"
+                    "duration": "90 minutes"
                 },
                 {
                     "lesson_id": "lesson_004",
                     "title": "Lecture 4: Smart Contracts",
                     "content": "Introduction to smart contracts and their use cases.",
                     "resource": "https://ethereum.org/en/smart-contracts/",
-                    "duration": "1 hour"
+                    "duration": "120 minutes"
                 }
             ]
         },
@@ -382,28 +382,28 @@
                     "title": "Lecture 1: What is Machine Learning?",
                     "content": "Overview of machine learning concepts and applications.",
                     "resource": "https://www.coursera.org/learn/machine-learning",
-                    "duration": "1 hour"
+                    "duration": "60 minutes"
                 },
                 {
                     "lesson_id": "lesson_002",
                     "title": "Lecture 2: Supervised Learning",
                     "content": "Understanding supervised learning and its algorithms.",
                     "resource": "https://developers.google.com/machine-learning/crash-course/supervised-learning",
-                    "duration": "1 hour"
+                    "duration": "75 minutes"
                 },
                 {
                     "lesson_id": "lesson_003",
                     "title": "Lecture 3: Unsupervised Learning",
                     "content": "Introduction to unsupervised learning and clustering techniques.",
                     "resource": "https://developers.google.com/machine-learning/crash-course/unsupervised-learning",
-                    "duration": "1 hour"
+                    "duration": "90 minutes"
                 },
                 {
                     "lesson_id": "lesson_004",
                     "title": "Lecture 4: Neural Networks",
                     "content": "Basics of neural networks and deep learning.",
                     "resource": "https://www.tensorflow.org/learn",
-                    "duration": "1 hour"
+                    "duration": "120 minutes"
                 }
             ]
         },
@@ -419,28 +419,28 @@
                     "title": "Lecture 1: What is DevOps?",
                     "content": "Introduction to DevOps and its benefits.",
                     "resource": "https://aws.amazon.com/devops/what-is-devops/",
-                    "duration": "1 hour"
+                    "duration": "60 minutes"
                 },
                 {
                     "lesson_id": "lesson_002",
                     "title": "Lecture 2: CI/CD Pipelines",
                     "content": "Understanding continuous integration and continuous delivery.",
                     "resource": "https://www.redhat.com/en/topics/devops/what-is-ci-cd",
-                    "duration": "1 hour"
+                    "duration": "75 minutes"
                 },
                 {
                     "lesson_id": "lesson_003",
                     "title": "Lecture 3: Infrastructure as Code",
                     "content": "Introduction to IaC and its tools.",
                     "resource": "https://www.hashicorp.com/resources/what-is-infrastructure-as-code",
-                    "duration": "1 hour"
+                    "duration": "90 minutes"
                 },
                 {
                     "lesson_id": "lesson_004",
                     "title": "Lecture 4: Monitoring and Logging",
                     "content": "Basics of monitoring and logging in DevOps.",
                     "resource": "https://www.datadoghq.com/solutions/devops/",
-                    "duration": "1 hour"
+                    "duration": "120 minutes"
                 }
             ]
         },
@@ -456,28 +456,28 @@
                     "title": "Lecture 1: Introduction to Game Development",
                     "content": "Overview of game development and its components.",
                     "resource": "https://learn.unity.com/course/create-with-code",
-                    "duration": "1 hour"
+                    "duration": "60 minutes"
                 },
                 {
                     "lesson_id": "lesson_002",
                     "title": "Lecture 2: Game Design Principles",
                     "content": "Understanding the principles of game design.",
                     "resource": "https://www.gamedesigning.org/learn/game-design-principles/",
-                    "duration": "1 hour"
+                    "duration": "75 minutes"
                 },
                 {
                     "lesson_id": "lesson_003",
                     "title": "Lecture 3: Game Programming Basics",
                     "content": "Introduction to programming for games using Unity.",
                     "resource": "https://learn.unity.com/course/create-with-code",
-                    "duration": "1 hour"
+                    "duration": "90 minutes"
                 },
                 {
                     "lesson_id": "lesson_004",
                     "title": "Lecture 4: Game Physics",
                     "content": "Basics of physics in game development.",
                     "resource": "https://learn.unity.com/tutorial/physics",
-                    "duration": "1 hour"
+                    "duration": "120 minutes"
                 }
             ]
         },
@@ -493,28 +493,28 @@
                     "title": "Lecture 1: Introduction to Robotics",
                     "content": "Overview of robotics and its applications.",
                     "resource": "https://ocw.mit.edu/courses/mechanical-engineering/2-12-introduction-to-robotics-fall-2020/pages/lecture-1/",
-                    "duration": "1 hour"
+                    "duration": "60 minutes"
                 },
                 {
                     "lesson_id": "lesson_002",
                     "title": "Lecture 2: Kinematics",
                     "content": "Understanding the motion of robots and their components.",
                     "resource": "https://ocw.mit.edu/courses/mechanical-engineering/2-12-introduction-to-robotics-fall-2020/pages/lecture-2/",
-                    "duration": "1 hour"
+                    "duration": "75 minutes"
                 },
                 {
                     "lesson_id": "lesson_003",
                     "title": "Lecture 3: Sensors and Perception",
                     "content": "Introduction to sensors and how robots perceive their environment.",
                     "resource": "https://ocw.mit.edu/courses/mechanical-engineering/2-12-introduction-to-robotics-fall-2020/pages/lecture-3/",
-                    "duration": "1 hour"
+                    "duration": "90 minutes"
                 },
                 {
                     "lesson_id": "lesson_004",
                     "title": "Lecture 4: Control Systems",
                     "content": "Basics of control systems in robotics.",
                     "resource": "https://ocw.mit.edu/courses/mechanical-engineering/2-12-introduction-to-robotics-fall-2020/pages/lecture-4/",
-                    "duration": "1 hour"
+                    "duration": "120 minutes"
                 }
             ]
         },
@@ -530,28 +530,28 @@
                     "title": "Lecture 1: What is Quantum Computing?",
                     "content": "Introduction to quantum computing and its principles.",
                     "resource": "https://qiskit.org/learn/quantum-computing/",
-                    "duration": "1 hour"
+                    "duration": "60 minutes"
                 },
                 {
                     "lesson_id": "lesson_002",
                     "title": "Lecture 2: Qubits and Quantum Gates",
                     "content": "Understanding qubits and how quantum gates work.",
                     "resource": "https://qiskit.org/learn/quantum-computing/qubits-and-gates/",
-                    "duration": "1 hour"
+                    "duration": "75 minutes"
                 },
                 {
                     "lesson_id": "lesson_003",
                     "title": "Lecture 3: Quantum Algorithms",
                     "content": "Introduction to quantum algorithms like Grover's and Shor's algorithms.",
                     "resource": "https://qiskit.org/learn/quantum-computing/algorithms/",
-                    "duration": "1 hour"
+                    "duration": "90 minutes"
                 },
                 {
                     "lesson_id": "lesson_004",
                     "title": "Lecture 4: Quantum Applications",
                     "content": "Exploring real-world applications of quantum computing.",
                     "resource": "https://qiskit.org/learn/quantum-computing/applications/",
-                    "duration": "1 hour"
+                    "duration": "120 minutes"
                 }
             ]
         },
@@ -567,28 +567,28 @@
                     "title": "Lecture 1: What is Ethical Hacking?",
                     "content": "Introduction to ethical hacking and its importance.",
                     "resource": "https://www.cybrary.it/course/ethical-hacking/",
-                    "duration": "1 hour"
+                    "duration": "60 minutes"
                 },
                 {
                     "lesson_id": "lesson_002",
                     "title": "Lecture 2: Reconnaissance",
                     "content": "Understanding reconnaissance techniques in ethical hacking.",
                     "resource": "https://www.cybrary.it/course/ethical-hacking/reconnaissance/",
-                    "duration": "1 hour"
+                    "duration": "75 minutes"
                 },
                 {
                     "lesson_id": "lesson_003",
                     "title": "Lecture 3: Exploitation",
                     "content": "Basics of exploiting vulnerabilities in systems.",
                     "resource": "https://www.cybrary.it/course/ethical-hacking/exploitation/",
-                    "duration": "1 hour"
+                    "duration": "90 minutes"
                 },
                 {
                     "lesson_id": "lesson_004",
                     "title": "Lecture 4: Reporting and Mitigation",
                     "content": "How to report vulnerabilities and mitigate risks.",
                     "resource": "https://www.cybrary.it/course/ethical-hacking/reporting/",
-                    "duration": "1 hour"
+                    "duration": "120 minutes"
                 }
             ]
         },
@@ -604,28 +604,28 @@
                     "title": "Lecture 1: What is Augmented Reality?",
                     "content": "Introduction to augmented reality and its applications.",
                     "resource": "https://learn.unity.com/course/introduction-to-augmented-reality",
-                    "duration": "1 hour"
+                    "duration": "60 minutes"
                 },
                 {
                     "lesson_id": "lesson_002",
                     "title": "Lecture 2: AR Development Tools",
                     "content": "Overview of tools used for AR development.",
                     "resource": "https://learn.unity.com/course/introduction-to-augmented-reality/tools/",
-                    "duration": "1 hour"
+                    "duration": "75 minutes"
                 },
                 {
                     "lesson_id": "lesson_003",
                     "title": "Lecture 3: AR Design Principles",
                     "content": "Understanding design principles for AR applications.",
                     "resource": "https://learn.unity.com/course/introduction-to-augmented-reality/design/",
-                    "duration": "1 hour"
+                    "duration": "90 minutes"
                 },
                 {
                     "lesson_id": "lesson_004",
                     "title": "Lecture 4: AR Applications",
                     "content": "Exploring real-world applications of AR technology.",
                     "resource": "https://learn.unity.com/course/introduction-to-augmented-reality/applications/",
-                    "duration": "1 hour"
+                    "duration": "120 minutes"
                 }
             ]
         },
@@ -641,28 +641,28 @@
                     "title": "Lecture 1: What is NLP?",
                     "content": "Introduction to natural language processing and its applications.",
                     "resource": "https://www.coursera.org/learn/natural-language-processing",
-                    "duration": "1 hour"
+                    "duration": "60 minutes"
                 },
                 {
                     "lesson_id": "lesson_002",
                     "title": "Lecture 2: Text Processing",
                     "content": "Understanding text preprocessing techniques.",
                     "resource": "https://www.coursera.org/learn/natural-language-processing/text-processing/",
-                    "duration": "1 hour"
+                    "duration": "75 minutes"
                 },
                 {
                     "lesson_id": "lesson_003",
                     "title": "Lecture 3: Sentiment Analysis",
                     "content": "Basics of sentiment analysis and its applications.",
                     "resource": "https://www.coursera.org/learn/natural-language-processing/sentiment-analysis/",
-                    "duration": "1 hour"
+                    "duration": "90 minutes"
                 },
                 {
                     "lesson_id": "lesson_004",
                     "title": "Lecture 4: Language Models",
                     "content": "Introduction to language models and their use cases.",
                     "resource": "https://www.coursera.org/learn/natural-language-processing/language-models/",
-                    "duration": "1 hour"
+                    "duration": "120 minutes"
                 }
             ]
         }
