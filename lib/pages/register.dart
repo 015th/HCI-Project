@@ -13,8 +13,7 @@ class RegisterScreen extends StatefulWidget {
 class _RegisterScreenState extends State<RegisterScreen> {
   final _formKey = GlobalKey<FormState>();
 
-final _auth = AuthService();
-
+  final _auth = AuthService();
 
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _usernameController = TextEditingController();
@@ -69,9 +68,14 @@ final _auth = AuthService();
                 const SizedBox(height: 20),
                 const Text(
                   "Create Account",
-                  style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
                 ),
-                const SizedBox(height: 20),
+                const Text(
+                  'Fill in your information to create your account',
+                  style: TextStyle(fontSize: 14, color: Colors.grey),
+                ),
+                const Divider(thickness: 1, color: Colors.black12),
+                const SizedBox(height: 18),
 
                 // Email Field with Validation
                 _buildTextField("Email Address", _emailController,
@@ -127,12 +131,29 @@ final _auth = AuthService();
 
                 // Create Account Button
                 SizedBox(
-                width: double.infinity,
-                child: ElevatedButton(
-                  onPressed: () => _onCreateAccountPressed(context),
-                  child: const Text("Create Account"),
+                  width: double.infinity,
+                  height: 49,
+                  child: OutlinedButton(
+                    style: OutlinedButton.styleFrom(
+                      padding: EdgeInsets.zero,
+                      side: const BorderSide(color: Colors.black26),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.all(Radius.circular(16)),
+                      ),
+                      backgroundColor: Colors.blue,
+                    ),
+                    onPressed: () => _onCreateAccountPressed(context),
+                    child: const Text(
+                      "Create Account",
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 16,
+                        fontFamily: 'Nunito Sans',
+                        fontWeight: FontWeight.w600,
+                      ),
+                    ),
+                  ),
                 ),
-              ),
               ],
             ),
           ),
@@ -231,23 +252,23 @@ final _auth = AuthService();
   }
 
   void _onCreateAccountPressed(BuildContext context) async {
-  if (_formKey.currentState!.validate()) {
-    if (!_isChecked) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text("You must agree to the privacy policy")),
-      );
-    } else {
-      // User creation logic
-      final user = await _auth.createUserWithEmailAndPassword(
-        _emailController.text, 
-        _passwordController.text,
-      );
-      if (user != null) {
-        log("User Created Successfully");
-        Navigator.pushReplacementNamed(context, "/login");  // Navigate to login screen
+    if (_formKey.currentState!.validate()) {
+      if (!_isChecked) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(content: Text("You must agree to the privacy policy")),
+        );
+      } else {
+        // User creation logic
+        final user = await _auth.createUserWithEmailAndPassword(
+          _emailController.text,
+          _passwordController.text,
+        );
+        if (user != null) {
+          log("User Created Successfully");
+          Navigator.pushReplacementNamed(
+              context, "/login"); // Navigate to login screen
+        }
       }
     }
   }
-}
-
 }
