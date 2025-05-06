@@ -154,6 +154,19 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     ),
                   ),
                 ),
+
+                 const SizedBox(height: 10),
+
+              // NAVIGATE TO REGISTER (centered)
+              Center(
+                child: TextButton(
+                  onPressed: () {
+                    Navigator.pushNamed(context, '/login');
+                  },
+                  child: const Text("Already have an account? Log in"),
+                ),
+              ),
+
               ],
             ),
           ),
