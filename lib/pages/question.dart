@@ -43,7 +43,9 @@ class _QuestionScreenState extends State<QuestionScreen> {
     ];
 
     return Scaffold(
-      appBar: AppBar(title: const Text("Question 1")),
+      appBar: AppBar(title: const Text("Question 1"),
+         automaticallyImplyLeading: false, ),
+      
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,

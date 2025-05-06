@@ -26,6 +26,7 @@ class _HomePageState extends State<HomePage> {
       appBar: AppBar(
         title: Text('extend'),
         centerTitle: true,
+        automaticallyImplyLeading: false, // Remove back button
       ),
       body: StreamBuilder(
         stream: fetchData.snapshots(),

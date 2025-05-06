@@ -40,6 +40,7 @@ class _CurrentCourseState extends State<CurrentCourse> {
             ),
           ),
         ),
+        automaticallyImplyLeading: false, 
       ),
       body: Center(
         child: Container(

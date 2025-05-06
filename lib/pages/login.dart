@@ -184,6 +184,7 @@ class _LoginPageState extends State<LoginPage> {
             ],
           ),
         ),
+        automaticallyImplyLeading: false, 
         centerTitle: true,
       ),
       body: Padding(

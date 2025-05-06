@@ -30,6 +30,7 @@ class _ProfilePageState extends State<ProfilePage> {
             ),
           ),
         ),
+        automaticallyImplyLeading: false, 
       ),
       body: Center(
         child: Container(

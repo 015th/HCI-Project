@@ -32,10 +32,14 @@ class _BookmarkState extends State<Bookmark> {
                   blurRadius: 4,
                   color: Color.fromRGBO(0, 0, 0, 0.25),
                 ),
+                
               ],
             ),
+            
           ),
+        
         ),
+        automaticallyImplyLeading: false, 
       ),
       body: Center(
         child: Container(
