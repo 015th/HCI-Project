@@ -5,45 +5,72 @@ import 'package:flutter_application_1/pages/profile.dart';
 import 'package:flutter_application_1/pages/savedCourse.dart';
 
 class NavigatorPage extends StatefulWidget {
-  const NavigatorPage({super.key});
+  final Map<String, dynamic>? userPreferences;
+
+  const NavigatorPage({super.key, this.userPreferences});
 
   @override
-  _NavigatorPageState createState() => _NavigatorPageState();
+  State<NavigatorPage> createState() => _NavigatorPageState();
 }
 
 class _NavigatorPageState extends State<NavigatorPage> {
   int myIndex = 0;
 
-  // List of Screens
-  List<Widget> screens = [
-    const HomePage(),
-    const CurrentCourse(),
-    const Bookmark(),
-    const ProfilePage(),
-  ];
+  late List<Widget> screens;
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+
+    // Retrieve arguments passed to /home
+    final args = ModalRoute.of(context)?.settings.arguments as Map<String, dynamic>?;
+
+    // Initialize screens with userPreferences
+    screens = [
+      HomePage(userPreferences: args ?? widget.userPreferences), // Pass userPreferences to HomePage
+      const CurrentCourse(),
+      const Bookmark(),
+      const ProfilePage(),
+    ];
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: screens[myIndex], 
-      
+      backgroundColor: Colors.white,
+      body: SafeArea(
+        child: screens[myIndex], // Show the selected screen
+      ),
       bottomNavigationBar: BottomNavigationBar(
+        backgroundColor: Colors.white,
+        selectedItemColor: Colors.blue,
+        unselectedItemColor: Colors.grey,
+        type: BottomNavigationBarType.fixed,
+        currentIndex: myIndex,
         onTap: (index) {
           setState(() {
             myIndex = index;
           });
         },
-        backgroundColor: Colors.black, // Set background color to black
-        selectedItemColor: Colors.cyan, // Active icon & text color
-        unselectedItemColor: Colors.grey, // Inactive icon & text color
-        currentIndex: myIndex,  // Set initial selected index
         items: const [
-          BottomNavigationBarItem(icon: Icon(Icons.search), label: 'Explore'),
-          BottomNavigationBarItem(icon: Icon(Icons.school), label: 'Courses'),
-          BottomNavigationBarItem(icon: Icon(Icons.bookmark), label: 'Saved'),
-          BottomNavigationBarItem(icon: Icon(Icons.person), label: 'Profile'),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.explore),
+            label: 'Explore',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.bookmark),
+            label: 'Saved',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.book),
+            label: 'Completed',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.person),
+            label: 'Profile',
+          ),
         ],
       ),
-    ); // Scaffold
+    );
   }
 }

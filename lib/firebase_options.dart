@@ -22,6 +22,8 @@ class DefaultFirebaseOptions {
     switch (defaultTargetPlatform) {
       case TargetPlatform.android:
         return android;
+      case TargetPlatform.windows:
+        return windows; // Add this case for Windows
       case TargetPlatform.iOS:
         throw UnsupportedError(
           'DefaultFirebaseOptions have not been configured for ios - '
@@ -30,11 +32,6 @@ class DefaultFirebaseOptions {
       case TargetPlatform.macOS:
         throw UnsupportedError(
           'DefaultFirebaseOptions have not been configured for macos - '
-          'you can reconfigure this by running the FlutterFire CLI again.',
-        );
-      case TargetPlatform.windows:
-        throw UnsupportedError(
-          'DefaultFirebaseOptions have not been configured for windows - '
           'you can reconfigure this by running the FlutterFire CLI again.',
         );
       case TargetPlatform.linux:
@@ -65,5 +62,15 @@ class DefaultFirebaseOptions {
     messagingSenderId: '284309481830',
     projectId: 'fir-extend',
     storageBucket: 'fir-extend.firebasestorage.app',
+  );
+
+  static const FirebaseOptions windows = FirebaseOptions(
+    apiKey: 'AIzaSyAzL5Zl5YAaIshUTGiTw65GM84eAdwkF8s',
+    appId: '1:284309481830:web:580ff4d48e0937d78600a7',
+    messagingSenderId: '284309481830',
+    projectId: 'fir-extend',
+    authDomain: 'fir-extend.firebaseapp.com',
+    storageBucket: 'fir-extend.firebasestorage.app',
+    measurementId: 'G-6Z8BKV9BY1',
   );
 }
