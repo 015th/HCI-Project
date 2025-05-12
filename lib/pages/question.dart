@@ -36,36 +36,28 @@ class _QuestionScreenState extends State<QuestionScreen> {
     }
   }
 
-  @override
-  Widget build(BuildContext context) {
-    List<String> subjects = [
-      "Computer Science",
-      "Mathematics",
-      "Psychology",
-      "Economics",
-      "Biology",
-      "Artificial Intelligence",
-      "Data Science",
-      "Cybersecurity",
-      "Cloud Computing",
-      "Blockchain",
-      "Machine Learning",
-      "DevOps",
-      "Game Development",
-      "Robotics",
-      "Quantum Computing",
-      "Natural Language Processing"
-    ];
-
-    return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.white,
-        elevation: 0,
-        leading: IconButton(
-          icon: const Icon(Icons.arrow_back, color: Colors.grey),
-          onPressed: () => Navigator.pop(context),
-        ),
+  void _skipQuestion() {
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => SecondQuestionScreen(selectedSubjects: []),
       ),
+    );
+  }
+
+ @override
+Widget build(BuildContext context) {
+  List<String> subjects = [
+    "Computer Science", "Mathematics", "Psychology", "Economics", "Biology",
+    "Artificial Intelligence", "Data Science", "Cybersecurity", "Cloud Computing",
+    "Blockchain", "Machine Learning", "DevOps", "Game Development", "Robotics",
+    "Quantum Computing", "Natural Language Processing"
+  ];
+
+   return PopScope(
+    canPop: false,
+    child: Scaffold(
+      backgroundColor: const Color(0xFFF8F8F8),
       body: Column(
         children: [
           const SizedBox(height: 20),
@@ -109,21 +101,28 @@ class _QuestionScreenState extends State<QuestionScreen> {
                             child: Container(
                               margin: const EdgeInsets.symmetric(vertical: 8),
                               decoration: BoxDecoration(
-                                color: selectedSubjects.contains(subject) ? Colors.cyan.withOpacity(0.2) : Colors.white,
+                                color: selectedSubjects.contains(subject)
+                                    ? Colors.cyan.withOpacity(0.2)
+                                    : Colors.white,
                                 border: Border.all(
-                                  color: selectedSubjects.contains(subject) ? Colors.cyan : Colors.grey,
+                                  color: selectedSubjects.contains(subject)
+                                      ? Colors.cyan
+                                      : Colors.grey,
                                   width: 1.5,
                                 ),
                                 borderRadius: BorderRadius.circular(30),
                               ),
                               child: Padding(
-                                padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 20),
+                                padding: const EdgeInsets.symmetric(
+                                    vertical: 12, horizontal: 20),
                                 child: Center(
                                   child: Text(
                                     subject,
                                     style: TextStyle(
                                       fontSize: 16,
-                                      color: selectedSubjects.contains(subject) ? Colors.cyan : Colors.black,
+                                      color: selectedSubjects.contains(subject)
+                                          ? Colors.cyan
+                                          : Colors.black,
                                       fontWeight: FontWeight.w500,
                                     ),
                                   ),
@@ -133,18 +132,44 @@ class _QuestionScreenState extends State<QuestionScreen> {
                           );
                         }).toList(),
                         const SizedBox(height: 20),
-                        ElevatedButton(
-                          onPressed: _nextQuestion,
-                          style: ElevatedButton.styleFrom(
-                            backgroundColor: Colors.black,
-                            foregroundColor: Colors.white,
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(30),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            ElevatedButton(
+                              onPressed: _skipQuestion,
+                              style: ElevatedButton.styleFrom(
+                                foregroundColor: Colors.white,
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(30),
+                                ),
+                                padding: const EdgeInsets.symmetric(
+                                    vertical: 12, horizontal: 30),
+                              ),
+                              child: const Text(
+                                "Skip",
+                                style: TextStyle(
+                                  fontSize: 14,
+                                  color: Color.fromARGB(255, 3, 3, 3),
+                                ),
+                              ),
                             ),
-                            padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 30),
-                          ),
-                          child: const Text("Next"),
+                            const SizedBox(width: 20),
+                            ElevatedButton(
+                              onPressed: _nextQuestion,
+                              style: ElevatedButton.styleFrom(
+                                backgroundColor: Colors.black,
+                                foregroundColor: Colors.white,
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(30),
+                                ),
+                                padding: const EdgeInsets.symmetric(
+                                    vertical: 12, horizontal: 30),
+                              ),
+                              child: const Text("Next"),
+                            ),
+                          ],
                         ),
+                        const SizedBox(height: 20),
                       ],
                     ),
                   ),
@@ -152,9 +177,10 @@ class _QuestionScreenState extends State<QuestionScreen> {
               ),
             ),
           ),
+          const SizedBox(height: 20),
         ],
       ),
-      backgroundColor: const Color(0xFFF8F8F8),
-    );
-  }
+    ),
+  );
+}
 }

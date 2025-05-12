@@ -31,19 +31,25 @@ class _SecondQuestionScreenState extends State<SecondQuestionScreen> {
     }
   }
 
+  void _skipQuestion() {
+  Navigator.push(
+    context,
+    MaterialPageRoute(
+      builder: (context) => ThirdQuestionScreen(
+        selectedSubjects: [], // Empty list for selected subjects
+        selectedDifficulty: "No selection", // Default string value
+      ),
+    ),
+  );
+}
+
+
   @override
   Widget build(BuildContext context) {
     List<String> difficulties = ["Beginner", "Intermediate", "Advanced"];
 
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.white,
-        elevation: 0,
-        leading: IconButton(
-          icon: const Icon(Icons.arrow_back, color: Colors.grey),
-          onPressed: () => Navigator.pop(context),
-        ),
-      ),
+   
       body: Column(
         children: [
           const SizedBox(height: 20),
@@ -115,18 +121,44 @@ class _SecondQuestionScreenState extends State<SecondQuestionScreen> {
                           );
                         }).toList(),
                         const SizedBox(height: 20),
-                        ElevatedButton(
-                          onPressed: _nextQuestion,
-                          style: ElevatedButton.styleFrom(
-                            backgroundColor: Colors.black,
-                            foregroundColor: Colors.white,
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(30),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                          ElevatedButton(
+                            onPressed: _skipQuestion,
+                            style: ElevatedButton.styleFrom(
+                              foregroundColor: Colors.white,
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(30),
+                              ),
+                              padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 30),
                             ),
-                            padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 30),
+                            child: const Text("Skip",
+                              style: TextStyle(
+                              fontSize: 14,
+                              color: Color.fromARGB(255, 3, 3, 3),
+                            ),
+                            ),
                           ),
-                          child: const Text("Next"),
+                          const SizedBox(width: 20), 
+
+                          ElevatedButton(
+                            onPressed: _nextQuestion,
+                            style: ElevatedButton.styleFrom(
+                              backgroundColor: Colors.black,
+                              foregroundColor: Colors.white,
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(30),
+                              ),
+                              padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 30),
+                            ),
+                            child: const Text("Next"),
+                          ),
+                          ],
+                          
                         ),
+                      const SizedBox(height: 20),
+
                       ],
                     ),
                   ),
@@ -134,6 +166,8 @@ class _SecondQuestionScreenState extends State<SecondQuestionScreen> {
               ),
             ),
           ),
+                    const SizedBox(height: 20),
+
         ],
       ),
       backgroundColor: const Color(0xFFF8F8F8),

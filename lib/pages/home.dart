@@ -24,6 +24,7 @@ class _HomePageState extends State<HomePage> {
   final Set<String> _favoritedCourses = {}; // Track favorited courses by their IDs
   final TextEditingController _searchController = TextEditingController(); // Controller for the search bar
   final ValueNotifier<String> _searchQueryNotifier = ValueNotifier(''); // Notifier for the search query
+ 
   String _selectedSubject = ''; // Currently selected subject for filtering
 
   @override
@@ -35,7 +36,10 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
-    return StreamBuilder(
+     return PopScope(
+    canPop: false,
+    
+    child: StreamBuilder(
       stream: fetchData.snapshots(),
       builder: (context, AsyncSnapshot<QuerySnapshot> streamSnapshot) {
         if (streamSnapshot.hasError) {
@@ -56,34 +60,31 @@ class _HomePageState extends State<HomePage> {
           return Column(
             children: [
               // Top navigation part with white background
-              Container(
-                color: Colors.white,
-                padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 16),
-                child: Row(
-                  children: [
-                    IconButton(
-                      icon: const Icon(Icons.arrow_back),
-                      onPressed: () {
-                        Navigator.pop(context);
-                      },
-                    ),
-                    const Expanded(
-                      child: Center(
-                        child: Text(
+             Container(
+                  color: Colors.white,
+                  padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 16),
+                  child: Row( // Wrap with Row to use Expanded
+                    children: [
+                      Expanded(
+                         child: Text(
                           'extend',
                           style: TextStyle(
-                            fontSize: 20,
-                            fontWeight: FontWeight.w500,
-                            color: Colors.blue,
+                            fontSize: 25,
+                            color: Colors.cyan,
+                            shadows: [
+                              Shadow(
+                                offset: const Offset(0, 4),
+                                blurRadius: 4,
+                                color: Colors.black.withOpacity(0.25),
+                              ),
+                            ],
                           ),
-                        ),
+                        ),  
                       ),
-                    ),
-                    const SizedBox(width: 48), // Balance for the back button
-                  ],
+                      SizedBox(width: 48),
+                    ],
+                  ),
                 ),
-              ),
-
               // Search bar
               Padding(
                 padding: const EdgeInsets.all(16.0),
@@ -215,6 +216,7 @@ class _HomePageState extends State<HomePage> {
         }
         return const Center(child: Text('No courses available.'));
       },
+     ),
     );
   }
 
@@ -322,116 +324,131 @@ class _HomePageState extends State<HomePage> {
               ],
             ),
           ),
-          SizedBox(
-            height: 150,
-            child: ListView.builder(
-              scrollDirection: Axis.horizontal,
-              padding: const EdgeInsets.symmetric(horizontal: 8),
-              itemCount: courses.length,
-              itemBuilder: (context, index) {
-                final course = courses[index].data() as Map<String, dynamic>;
-                final courseId = courses[index].id; // Use the document ID as a unique identifier
-                final lessons = course['lessons'] ?? [];
-                int totalDuration = 0;
+          GridView.count(
+            crossAxisCount: 2,
+            crossAxisSpacing: 8,
+            mainAxisSpacing: 8,
+            shrinkWrap: true,
+            physics: NeverScrollableScrollPhysics(), // Prevent nested scrolling
+            padding: const EdgeInsets.all(8),
+            children: courses.take(6).map((doc)  {
+              final course = doc.data() as Map<String, dynamic>;
+              final courseId = doc.id;
+              final lessons = course['lessons'] ?? [];
+              int totalDuration = 0;
 
-                // Calculate total duration
-                for (var lesson in lessons) {
-                  final durationString = lesson['duration'] ?? '0 minutes';
-                  final durationInMinutes = int.parse(durationString.split(' ')[0]);
-                  totalDuration += durationInMinutes;
-                }
+              for (var lesson in lessons) {
+                final durationString = lesson['duration'] ?? '0 minutes';
+                final durationInMinutes = int.parse(durationString.split(' ')[0]);
+                totalDuration += durationInMinutes;
+              }
+
+            return FutureBuilder<bool>(
+              future: isCourseSaved(courseId),
+              builder: (context, snapshot) {
+                bool isSaved = snapshot.data ?? false;
 
                 return GestureDetector(
                   onTap: () {
-                    // Navigate to course details
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => DetailPage1.CourseDetailPage(courseData: courses[index]),
+                        builder: (context) => DetailPage1.CourseDetailPage(courseData: doc),
                       ),
                     );
                   },
-                  child: Container(
-                    width: 150,
-                    margin: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
-                    child: Card(
-                      elevation: 0,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(10),
-                        side: BorderSide(color: Colors.grey.shade300, width: 0.5),
-                      ),
-                      color: Colors.grey.shade50,
-                      child: Padding(
-                        padding: const EdgeInsets.all(8),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              course['title'] ?? 'No Title',
-                              style: const TextStyle(
-                                fontSize: 14,
-                                fontWeight: FontWeight.bold,
-                              ),
-                              maxLines: 2,
-                              overflow: TextOverflow.ellipsis,
+                  child: Card(
+                    elevation: 0,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(10),
+                      side: BorderSide(color: Colors.grey.shade300, width: 0.5),
+                    ),
+                    color: Colors.grey.shade50,
+                    child: Padding(
+                      padding: const EdgeInsets.all(8),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            course['title'] ?? 'No Title',
+                            style: const TextStyle(
+                              fontSize: 14,
+                              fontWeight: FontWeight.bold,
                             ),
-                            const SizedBox(height: 4),
-                            Text(
-                              course['difficulty'] ?? 'No Difficulty',
-                              style: const TextStyle(
-                                fontSize: 12,
-                                color: Colors.grey,
-                              ),
+                            maxLines: 2,
+                            overflow: TextOverflow.ellipsis,
+                          ),
+                          const SizedBox(height: 4),
+                          Text(
+                            course['difficulty'] ?? 'No Difficulty',
+                            style: const TextStyle(
+                              fontSize: 12,
+                              color: Colors.grey,
                             ),
-                            const SizedBox(height: 4),
-                            Text(
-                              '$totalDuration mins',
-                              style: const TextStyle(
-                                fontSize: 12,
-                                color: Colors.grey,
-                              ),
+                          ),
+                          const SizedBox(height: 4),
+                          Text(
+                            '$totalDuration mins',
+                            style: const TextStyle(
+                              fontSize: 12,
+                              color: Colors.grey,
                             ),
-                            const Spacer(),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                GestureDetector(
-                                  onTap: () {
-                                    setState(() {
-                                      if (_favoritedCourses.contains(courseId)) {
-                                        _favoritedCourses.remove(courseId); // Remove from favorites
-                                      } else {
-                                        _favoritedCourses.add(courseId); // Add to favorites
-                                      }
+                          ),
+                          const Spacer(),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              IconButton(
+                                icon: Icon(
+                                  isSaved ? Icons.favorite : Icons.favorite_border,
+                                  color: isSaved ? Colors.red : null,
+                                ),
+                                onPressed: () {
+                                  if (isSaved) {
+                                    _courseService.showDeleteDialog(context, () {
+                                      _courseService.removeCourseFromUser(courseId, context);
                                     });
-                                  },
-                                  child: Icon(
-                                    _favoritedCourses.contains(courseId)
-                                        ? Icons.favorite // Red heart
-                                        : Icons.favorite_border, // Grey heart
-                                    color: _favoritedCourses.contains(courseId)
-                                        ? Colors.red
-                                        : Colors.grey,
-                                    size: 16,
-                                  ),
-                                ),
-                                Text(
-                                  '${lessons.length} Lessons',
-                                  style: const TextStyle(fontSize: 12, color: Colors.grey),
-                                ),
-                              ],
-                            ),
-                          ],
-                        ),
+                                  } else {
+                                    _courseService.saveCourseToUser(courseId, course, context);
+                                  }
+                                },
+                              ),
+                              Text(
+                                '${lessons.length} Lessons',
+                                style: const TextStyle(fontSize: 12, color: Colors.grey),
+                              ),
+                            ],
+                          ),
+                        ],
                       ),
                     ),
                   ),
                 );
               },
-            ),
-          ),
+            );
+
+          }).toList(),
+        ),
+
         ],
       ),
     );
   }
+
+  // Check if the course is saved by the user
+  Future<bool> isCourseSaved(String courseId) async {
+    if (user == null) {
+      return false;  // User is not logged in
+    }
+    
+    final doc = await FirebaseFirestore.instance
+        .collection('users')
+        .doc(user!.uid) // Null check on user before accessing uid
+        .collection('saved_courses')
+        .doc(courseId)
+        .get();
+
+    return doc.exists;
+  }
+  
 }

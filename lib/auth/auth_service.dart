@@ -1,39 +1,76 @@
-
 import 'package:firebase_auth/firebase_auth.dart';
 import 'dart:developer';
+import 'package:flutter/material.dart';
 
 class AuthService {
-  final _auth = FirebaseAuth.instance;
+  final FirebaseAuth _auth = FirebaseAuth.instance;
+  
 
+
+  // Register new user
   Future<User?> createUserWithEmailAndPassword(
-      String email, String password) async {
+    String email, 
+    String password, 
+    BuildContext context // Accept context as a parameter
+  ) async {
     try {
-      final cred = await _auth.createUserWithEmailAndPassword(
-          email: email, password: password);
+      final UserCredential cred = await _auth.createUserWithEmailAndPassword(
+        email: email,
+        password: password,
+      );
       return cred.user;
+    } on FirebaseAuthException catch (e) {
+      if (e.code == 'email-already-in-use') {
+        _showErrorDialog(context, 'The email is already in use.');
+      } else {
+        _showErrorDialog(context, 'Registration failed: ${e.message}');
+      }
     } catch (e) {
-      log("T wrong");
+      log("Unexpected error: $e");
     }
-    return null;
+    return null; // Return null if registration failed
   }
 
-  Future<User?> loginUserWithEmailAndPassword(
-      String email, String password) async {
+  // Login existing user
+  Future<User?> loginUserWithEmailAndPassword(String email, String password) async {
     try {
-      final cred = await _auth.signInWithEmailAndPassword(
-          email: email, password: password);
+      final UserCredential cred = await _auth.signInWithEmailAndPassword(
+        email: email,
+        password: password,
+      );
       return cred.user;
+    } on FirebaseAuthException catch (e) {
+      log("FirebaseAuthException during login: ${e.code} - ${e.message}");
+      rethrow;
     } catch (e) {
-      log("Something went wrong");
+      log("Unexpected error during login: $e");
+      rethrow;
     }
-    return null;
   }
 
+  // Logout user
   Future<void> signout() async {
     try {
       await _auth.signOut();
     } catch (e) {
-      log("Something went wrong");
+      log("Error during sign out: $e");
+      rethrow;
     }
+  }
+  
+  void _showErrorDialog(BuildContext context, String message) {
+    showDialog(
+      context: context,
+      builder: (ctx) => AlertDialog(
+        title: const Text('Error'),
+        content: Text(message),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.of(ctx).pop(),
+            child: const Text('OK'),
+          ),
+        ],
+      ),
+    );
   }
 }

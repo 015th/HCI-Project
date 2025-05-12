@@ -36,19 +36,24 @@ class _ThirdQuestionScreenState extends State<ThirdQuestionScreen> {
     }
   }
 
+  void _skipQuestion() {
+    Navigator.pushReplacementNamed(
+      context,
+     '/home', // Navigate to the NavigatorPage route
+      arguments: {
+        'subjects': null,
+        'difficulty': null,
+        'duration': null,
+      },
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     List<String> durations = ["<60 mins", "61-120 mins", ">120 mins"];
 
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.white,
-        elevation: 0,
-        leading: IconButton(
-          icon: const Icon(Icons.arrow_back, color: Colors.grey),
-          onPressed: () => Navigator.pop(context),
-        ),
-      ),
+  
       body: Column(
         children: [
           const SizedBox(height: 20),
@@ -120,18 +125,42 @@ class _ThirdQuestionScreenState extends State<ThirdQuestionScreen> {
                           );
                         }).toList(),
                         const SizedBox(height: 20),
-                        ElevatedButton(
-                          onPressed: _goToHomePage,
-                          style: ElevatedButton.styleFrom(
-                            backgroundColor: Colors.black,
-                            foregroundColor: Colors.white,
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(30),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                          ElevatedButton(
+                            onPressed: _skipQuestion,
+                            style: ElevatedButton.styleFrom(
+                              foregroundColor: Colors.white,
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(30),
+                              ),
+                              padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 30),
                             ),
-                            padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 30),
+                            child: const Text("Skip",
+                              style: TextStyle(
+                              fontSize: 14,
+                              color: Color.fromARGB(255, 3, 3, 3),
+                            ),
+                            ),
                           ),
-                          child: const Text("Finish"),
+                          const SizedBox(width: 20), 
+
+                           ElevatedButton(
+                            onPressed: _goToHomePage,
+                            style: ElevatedButton.styleFrom(
+                              backgroundColor: Colors.black,
+                              foregroundColor: Colors.white,
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(30),
+                              ),
+                              padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 30),
+                            ),
+                            child: const Text("Finish"),
+                            ),
+                          ],
                         ),
+                        const SizedBox(height: 20),
                       ],
                     ),
                   ),
@@ -139,6 +168,7 @@ class _ThirdQuestionScreenState extends State<ThirdQuestionScreen> {
               ),
             ),
           ),
+           const SizedBox(height: 20),
         ],
       ),
       backgroundColor: const Color(0xFFF8F8F8),

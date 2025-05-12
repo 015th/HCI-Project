@@ -45,6 +45,23 @@ class _LoginPageState extends State<LoginPage> {
     );
   }
 
+    Future<void> _showSuccessDialog(String message) async {
+    return showDialog<void>(
+      context: context,
+      barrierDismissible: true,
+      builder: (context) => AlertDialog(
+        title: const Text('Login Success!'),
+        content: Text(message),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.of(context).pop(),
+            child: const Text('OK'),
+          ),
+        ],
+      ),
+    );
+  }
+
   // Forgot password dialog
   Future<void> _showForgotPasswordDialog() async {
     final TextEditingController _forgotEmailController =
@@ -124,10 +141,10 @@ class _LoginPageState extends State<LoginPage> {
     try {
       final user = await _auth.loginUserWithEmailAndPassword(email, password);
       if (user != null) {
-        log("User Login Successfully");
+       await _showSuccessDialog('Log in successful');
         Navigator.pushReplacementNamed(context, "/question");
       } else {
-        await _showErrorDialog('Login failed. Please try again.');
+        await _showErrorDialog('Invalid username or password');
       }
     } on FirebaseAuthException catch (e) {
       String errorMessage = 'Login failed. Please try again.';

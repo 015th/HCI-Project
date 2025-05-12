@@ -114,12 +114,20 @@ class CourseDetailPage extends StatelessWidget {
                         const SizedBox(height: 5),
                         GestureDetector(
                           onTap: () async {
-                            final url = lesson['resource'];
-                            if (url != null && await canLaunchUrl(Uri.parse(url))) {
-                              await launchUrl(Uri.parse(url), mode: LaunchMode.externalApplication);
+                            final String? url = lesson['resource'];
+
+                            if (url != null && url.isNotEmpty) {
+                              final Uri uri = Uri.parse(url);
+                              if (await canLaunchUrl(uri)) {
+                                await launchUrl(uri, mode: LaunchMode.externalApplication);
+                              } else {
+                                ScaffoldMessenger.of(context).showSnackBar(
+                                  const SnackBar(content: Text('Could not open the resource URL.')),
+                                );
+                              }
                             } else {
                               ScaffoldMessenger.of(context).showSnackBar(
-                                const SnackBar(content: Text('Could not open the resource.')),
+                                const SnackBar(content: Text('No resource URL provided.')),
                               );
                             }
                           },

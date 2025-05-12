@@ -94,8 +94,8 @@ class _BookmarkState extends State<Bookmark> {
                               gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                                 crossAxisCount: 2,
                                 crossAxisSpacing: 16,
-                                mainAxisSpacing: 16,
-                                childAspectRatio: 0.75, // Taller cards
+                                mainAxisSpacing: 40,
+                                childAspectRatio: 0.65, // Taller cards
                               ),
                               itemCount: docs.length,
                               itemBuilder: (context, index) {
@@ -205,6 +205,7 @@ class _BookmarkState extends State<Bookmark> {
                                               padding: const EdgeInsets.only(top: 4, bottom: 8),
                                               child: Text(
                                                 subject,
+                                                maxLines: 1,
                                                 style: TextStyle(
                                                   fontSize: 14,
                                                   color: Colors.grey[700],

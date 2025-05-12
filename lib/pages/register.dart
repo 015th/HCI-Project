@@ -273,9 +273,11 @@ class _RegisterScreenState extends State<RegisterScreen> {
       } else {
         // User creation logic
         final user = await _auth.createUserWithEmailAndPassword(
-          _emailController.text,
-          _passwordController.text,
+          _emailController.text.trim(),
+          _passwordController.text.trim(),
+           context,
         );
+        
         if (user != null) {
           log("User Created Successfully");
           Navigator.pushReplacementNamed(

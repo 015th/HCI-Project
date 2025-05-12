@@ -59,11 +59,11 @@ class _NavigatorPageState extends State<NavigatorPage> {
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.bookmark),
-            label: 'Saved',
+            label: 'Enrolled',
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.book),
-            label: 'Completed',
+            label: 'Bookmarks',
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.person),
