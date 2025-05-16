@@ -6,7 +6,10 @@ import 'package:flutter_application_1/bottomNav.dart';
 import 'package:flutter_application_1/pages/question.dart';
 import 'package:flutter_application_1/pages/course_details.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:flutter_application_1/pages/settings.dart';
 import 'firebase_options.dart';
+
+
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -29,7 +32,8 @@ class MyApp extends StatelessWidget {
         '/login': (context) => const LoginPage(),
         '/register': (context) => const RegisterScreen(),
         '/home': (context) => const NavigatorPage(),
-        '/question': (context) => QuestionScreen(),
+        '/question': (context) => const QuestionScreen(),
+        '/settings': (context) => const SettingsPage(),
         // Add other routes as needed
       },
     );
