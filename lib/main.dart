@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/pages/mainScreen.dart'; // <--- Import your MainScreen
 import 'package:flutter_application_1/pages/login.dart';
 import 'package:flutter_application_1/pages/register.dart';
 import 'package:flutter_application_1/bottomNav.dart';
@@ -7,6 +6,7 @@ import 'package:flutter_application_1/pages/question.dart';
 import 'package:flutter_application_1/pages/course_details.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter_application_1/pages/settings.dart';
+import 'package:flutter_application_1/pages/splash.dart';
 import 'firebase_options.dart';
 
 
@@ -30,6 +30,7 @@ class MyApp extends StatelessWidget {
       initialRoute: '/login',
       routes: {
         '/login': (context) => const LoginPage(),
+        '/splash': (context) => SplashScreen(),
         '/register': (context) => const RegisterScreen(),
         '/home': (context) => const NavigatorPage(),
         '/question': (context) => const QuestionScreen(),

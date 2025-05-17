@@ -142,7 +142,7 @@ class _LoginPageState extends State<LoginPage> {
       final user = await _auth.loginUserWithEmailAndPassword(email, password);
       if (user != null) {
        await _showSuccessDialog('Log in successful');
-        Navigator.pushReplacementNamed(context, "/question");
+        Navigator.pushReplacementNamed(context, "/splash");
       } else {
         await _showErrorDialog('Invalid username or password');
       }

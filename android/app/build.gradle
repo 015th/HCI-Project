@@ -10,7 +10,7 @@ plugins {
 
 android {
     namespace = "com.example.flutter_application_1"
-    compileSdk = flutter.compileSdkVersion
+    compileSdk = 35
     ndkVersion = flutter.ndkVersion
 
     compileOptions {
@@ -32,7 +32,7 @@ android {
         versionCode = flutter.versionCode
         versionName = flutter.versionName
     }
-
+    
     buildTypes {
         release {
             // TODO: Add your own signing config for the release build.
