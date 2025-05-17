@@ -249,7 +249,8 @@ class _SettingsPageState extends State<SettingsPage> {
             _buildSectionTitle('Account'),
             ElevatedButton.icon(
               onPressed: _changeUsername,
-              icon: const Icon(Icons.edit),
+              icon: const Icon(Icons.edit,
+              color: Color.fromARGB(255, 249, 249, 249),),
               label: const Text('Change Username'),
               style: ElevatedButton.styleFrom(
                 backgroundColor: Colors.green,
@@ -261,7 +262,8 @@ class _SettingsPageState extends State<SettingsPage> {
             const SizedBox(height: 12),
             ElevatedButton.icon(
               onPressed: _changeEmail,
-              icon: const Icon(Icons.email),
+              icon: const Icon(Icons.email,
+              color: Color.fromARGB(255, 249, 249, 249),),
               label: const Text('Change Email'),
               style: ElevatedButton.styleFrom(
                 backgroundColor: Colors.deepPurple,
@@ -273,7 +275,8 @@ class _SettingsPageState extends State<SettingsPage> {
             const SizedBox(height: 12),
             ElevatedButton.icon(
               onPressed: _changePassword,
-              icon: const Icon(Icons.lock_reset),
+              icon: const Icon(Icons.lock_reset,
+              color: Color.fromARGB(255, 249, 249, 249),),
               label: const Text('Change Password'),
               style: ElevatedButton.styleFrom(
                 backgroundColor: Colors.blueAccent,

@@ -17,7 +17,9 @@ class _CurrentCourseState extends State<CurrentCourse> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return PopScope(
+      canPop: false,
+    child: Scaffold(
       appBar: AppBar(
         title: Padding(
           padding: const EdgeInsets.only(left: 30.0),
@@ -171,6 +173,7 @@ class _CurrentCourseState extends State<CurrentCourse> {
           ),
         ),
       ),
+    ),
     );
   }
 }
