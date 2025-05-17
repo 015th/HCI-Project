@@ -219,18 +219,18 @@ class _BookmarkState extends State<Bookmark> {
                                               child: ElevatedButton(
                                                 onPressed: () {
                                                   // Pass the courseId and course data to the enroll method
-                                                _courseService.enrollCourseToUser(
-                                                  documentSnapshot.id,  // The course's unique ID from Firestore
-                                                  documentSnapshot.data() as Map<String, dynamic>,  // The course data (fields like title, description)
-                                                  context ); // The context for showing the SnackBar
-                                                  },
+                                                  _courseService.enrollCourseToUser(
+                                                    documentSnapshot.id,  // The course's unique ID from Firestore
+                                                    documentSnapshot.data() as Map<String, dynamic>,  // The course data (fields like title, description)
+                                                    context ); // The context for showing the SnackBar
+                                                },
                                                 style: ElevatedButton.styleFrom(
                                                   backgroundColor:  Colors.transparent,
                                                   foregroundColor: Colors.cyan,
                                                   elevation: 0,
                                                   shape: RoundedRectangleBorder(
                                                   borderRadius: BorderRadius.circular(20),
-                                                side: BorderSide(
+                                                side: const BorderSide(
                                                     color: Color(0xFF00ADB5), // Border color
                                                     width: 2, // Border width
                                                   ),

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class SettingsPage extends StatefulWidget {
   const SettingsPage({super.key});
@@ -198,6 +199,24 @@ class _SettingsPageState extends State<SettingsPage> {
     );
   }
 
+  void _launchEmail() async {
+    final Uri emailLaunchUri = Uri(
+      scheme: 'mailto',
+      path: 'qccangus01@tip.edu.ph',
+      queryParameters: {
+        'subject': 'App Issue Report',
+        'body': 'Find an issue, Send it to us. We value your feedback, and are constantly trying to make the mobile app better.'
+      },
+    );
+    if (await canLaunchUrl(emailLaunchUri)) {
+      await launchUrl(emailLaunchUri);
+    } else {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(content: Text('Could not launch email client')),
+      );
+    }
+  }
+
   Widget _buildSectionTitle(String title) {
     return Padding(
       padding: const EdgeInsets.only(top: 24, bottom: 8),
@@ -294,14 +313,59 @@ class _SettingsPageState extends State<SettingsPage> {
             ListTile(
               title: const Text('Terms of Service'),
               onTap: () {
-                // Navigate to terms page or show dialog
+                showDialog<void>(
+                  context: context,
+                  builder: (BuildContext context) {
+                    return AlertDialog(
+                      title: const Text('Terms of Service'),
+                      content: const SingleChildScrollView(
+                        child: Text(
+                          'By using this educational app, you agree to our Terms of Service. '
+                          'The app provides personalized learning content based on your preferences. '
+                          'We strive to ensure content accuracy but do not guarantee specific results. '
+                          'Users are responsible for their use of the app and must respect intellectual property rights.',
+                        ),
+                      ),
+                      actions: <Widget>[
+                        TextButton(
+                          child: const Text('Close'),
+                          onPressed: () => Navigator.of(context).pop(),
+                        ),
+                      ],
+                    );
+                  },
+                );
               },
             ),
             ListTile(
               title: const Text('Privacy Policy'),
               onTap: () {
-                // Navigate to privacy page or show dialog
+                showDialog<void>(
+                  context: context,
+                  builder: (BuildContext context) {
+                    return AlertDialog(
+                      title: const Text('Privacy Policy'),
+                      content: const SingleChildScrollView(
+                        child: Text(
+                          'This educational app respects your privacy. We collect minimal personal data necessary '
+                          'to provide personalized learning experiences based on your preferences. '
+                          'Your data is securely stored and not shared with third parties without your consent.',
+                        ),
+                      ),
+                      actions: <Widget>[
+                        TextButton(
+                          child: const Text('Close'),
+                          onPressed: () => Navigator.of(context).pop(),
+                        ),
+                      ],
+                    );
+                  },
+                );
               },
+            ),
+            ListTile(
+              title: const Text('Report an Issue'),
+              onTap: _launchEmail,
             ),
           ],
         ),

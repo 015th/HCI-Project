@@ -123,7 +123,7 @@ class _ThirdQuestionScreenState extends State<ThirdQuestionScreen> {
                               ),
                             ),
                           );
-                        }).toList(),
+                        }),
                         const SizedBox(height: 20),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.center,

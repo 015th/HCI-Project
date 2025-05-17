@@ -5,6 +5,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter_application_1/bottomNav.dart';
 
 class ProfilePage extends StatefulWidget {
   const ProfilePage({super.key});
@@ -19,38 +20,16 @@ class _ProfilePageState extends State<ProfilePage> {
   bool isLoading = false;
 
   // Dummy data for achievements - replace with real data if available
-  final List<Map<String, dynamic>> achievements = [
-    {
-      'title': 'Basic Python',
-      'course': 'Python Crash Course',
-      'date': 'Apr 11, 2023',
-      'grade': '96%',
-      'color': Colors.orange,
-      'icon': Icons.code,
-    },
-    {
-      'title': 'Google',
-      'course': 'Google UX Design',
-      'date': 'Jun 3, 2022',
-      'grade': '98%',
-      'color': Colors.blue,
-      'icon': Icons.design_services,
-    },
-    {
-      'title': 'AI Badge',
-      'course': 'AI Fundamentals',
-      'date': 'Jan 15, 2023',
-      'grade': '92%',
-      'color': Colors.deepPurple,
-      'icon': Icons.smart_toy,
-    },
-  ];
+  final List<Map<String, dynamic>> achievements = [];
+
+  int coursesCount = 0; // Add coursesCount state
 
   @override
   void initState() {
     super.initState();
     user = FirebaseAuth.instance.currentUser;
     _loadUserData();
+    _listenToCoursesCount(); // Add listener for courses count
   }
 
   Future<void> _loadUserData() async {
@@ -75,6 +54,20 @@ class _ProfilePageState extends State<ProfilePage> {
         isLoading = false;
       });
     }
+  }
+
+  void _listenToCoursesCount() {
+    if (user == null) return;
+    FirebaseFirestore.instance
+        .collection('users')
+        .doc(user!.uid)
+        .collection('enrolledCourses')
+        .snapshots()
+        .listen((snapshot) {
+      setState(() {
+        coursesCount = snapshot.docs.length;
+      });
+    });
   }
 
   Future<void> _changeProfilePicture() async {
@@ -190,19 +183,26 @@ class _ProfilePageState extends State<ProfilePage> {
     final displayName = user?.displayName ?? 'User Name';
     final email = user?.email ?? '';
 
-    // Dummy data for weekly activity bars and stats
-    final List<double> activityHeights = [60, 80, 40, 100, 70, 90, 50];
+    // Real-time data for weekly activity bars and stats
     final List<String> weekDays = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
     final double weeklyHours = weeklyActivityMinutes / 60;
-    final double percentageChange = 14; // example percentage change
-    final int coursesCount = 15; // example courses count
-    final int avgGrade = 83; // example average grade
+    final int coursesCount = 0; // set to zero for new accounts, update dynamically when user enrolls courses
+
+    // Fetch real-time weekly activity heights from Firestore or local state
+    List<double> activityHeights = List.filled(7, 0);
+    // Example: Fetch daily activity minutes for each day of the week from Firestore
 
     return Scaffold(
       backgroundColor: const Color(0xFFF0F3F7),
       appBar: AppBar(
         backgroundColor: const Color(0xFFF0F3F7),
         elevation: 0,
+        leading: IconButton(
+          icon: const Icon(Icons.arrow_back, color: Colors.black87),
+          onPressed: () {
+            Navigator.pop(context);
+          },
+        ),
         title: Text(
           'Profile',
           style: GoogleFonts.poppins(
@@ -314,17 +314,47 @@ class _ProfilePageState extends State<ProfilePage> {
                     ),
                     const SizedBox(height: 12),
 
-                    // Achievements Cards Horizontal List
-                    SizedBox(
-                      height: 160,
-                      child: ListView.builder(
-                        scrollDirection: Axis.horizontal,
-                        itemCount: achievements.length,
-                        itemBuilder: (context, index) {
-                          return _buildAchievementCard(achievements[index]);
-                        },
-                      ),
-                    ),
+                    // Achievements Cards Horizontal List or "Start Learning Now!" button if no achievements
+                    achievements.isEmpty
+                        ? Column(
+                            children: [
+                              const SizedBox(height: 12),
+                              Text(
+                                'No achievements yet',
+                                style: GoogleFonts.poppins(
+                                    fontSize: 14, color: Colors.grey[600]),
+                              ),
+                              const SizedBox(height: 12),
+                              ElevatedButton(
+                                onPressed: () {
+                                  // Navigate to explore tab using bottomNav.dart index
+                                  Navigator.pushReplacement(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) => NavigatorPage(),
+                                    ),
+                                  );
+                                },
+                                child: const Text('Start Learning Now!'),
+                                style: ElevatedButton.styleFrom(
+                                  padding: const EdgeInsets.symmetric(
+                                      horizontal: 24, vertical: 12),
+                                  textStyle: GoogleFonts.poppins(
+                                      fontSize: 16, fontWeight: FontWeight.w600),
+                                ),
+                              ),
+                            ],
+                          )
+                        : SizedBox(
+                            height: 160,
+                            child: ListView.builder(
+                              scrollDirection: Axis.horizontal,
+                              itemCount: achievements.length,
+                              itemBuilder: (context, index) {
+                                return _buildAchievementCard(achievements[index]);
+                              },
+                            ),
+                          ),
                     const SizedBox(height: 24),
 
                     // Weekly Activities Card
@@ -352,23 +382,10 @@ class _ProfilePageState extends State<ProfilePage> {
                                     fontSize: 32, fontWeight: FontWeight.bold),
                               ),
                               const SizedBox(width: 12),
-                              Row(
-                                children: [
-                                  Icon(Icons.arrow_upward, color: Colors.green[600], size: 20),
-                                  const SizedBox(width: 4),
-                                  Text(
-                                    '$percentageChange% from last week',
-                                    style: GoogleFonts.poppins(
-                                        fontSize: 14,
-                                        fontWeight: FontWeight.w600,
-                                        color: Colors.green[600]),
-                                  ),
-                                ],
-                              ),
+                              // Removed percentage change arrow and text
                             ],
                           ),
                           const SizedBox(height: 16),
-
                           // Bar chart for weekly activity
                           Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -387,10 +404,9 @@ class _ProfilePageState extends State<ProfilePage> {
                             }),
                           ),
                           const SizedBox(height: 16),
-
-                          // Courses and Avg Grade stats
+                          // Courses count only, real-time, no avg grade
                           Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            mainAxisAlignment: MainAxisAlignment.start,
                             children: [
                               Column(
                                 children: [
@@ -401,20 +417,6 @@ class _ProfilePageState extends State<ProfilePage> {
                                   ),
                                   Text(
                                     '$coursesCount',
-                                    style: GoogleFonts.poppins(
-                                        fontSize: 18, fontWeight: FontWeight.bold),
-                                  ),
-                                ],
-                              ),
-                              Column(
-                                children: [
-                                  Text(
-                                    'Avg Grade',
-                                    style: GoogleFonts.poppins(
-                                        fontSize: 14, color: Colors.grey[600]),
-                                  ),
-                                  Text(
-                                    '$avgGrade%',
                                     style: GoogleFonts.poppins(
                                         fontSize: 18, fontWeight: FontWeight.bold),
                                   ),
