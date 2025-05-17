@@ -17,7 +17,9 @@ class _BookmarkState extends State<Bookmark> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return PopScope (
+      canPop: false,
+    child: Scaffold(
       appBar: AppBar(
         title: const Padding(
           padding: EdgeInsets.only(left: 30.0),
@@ -95,7 +97,7 @@ class _BookmarkState extends State<Bookmark> {
                                 crossAxisCount: 2,
                                 crossAxisSpacing: 16,
                                 mainAxisSpacing: 40,
-                                childAspectRatio: 0.65, // Taller cards
+                                childAspectRatio: 0.65, 
                               ),
                               itemCount: docs.length,
                               itemBuilder: (context, index) {
@@ -219,18 +221,18 @@ class _BookmarkState extends State<Bookmark> {
                                               child: ElevatedButton(
                                                 onPressed: () {
                                                   // Pass the courseId and course data to the enroll method
-                                                  _courseService.enrollCourseToUser(
-                                                    documentSnapshot.id,  // The course's unique ID from Firestore
-                                                    documentSnapshot.data() as Map<String, dynamic>,  // The course data (fields like title, description)
-                                                    context ); // The context for showing the SnackBar
-                                                },
+                                                _courseService.enrollCourseToUser(
+                                                  documentSnapshot.id,  // The course's unique ID from Firestore
+                                                  documentSnapshot.data() as Map<String, dynamic>,  // The course data (fields like title, description)
+                                                  context ); // The context for showing the SnackBar
+                                                  },
                                                 style: ElevatedButton.styleFrom(
                                                   backgroundColor:  Colors.transparent,
                                                   foregroundColor: Colors.cyan,
                                                   elevation: 0,
                                                   shape: RoundedRectangleBorder(
                                                   borderRadius: BorderRadius.circular(20),
-                                                side: const BorderSide(
+                                                side: BorderSide(
                                                     color: Color(0xFF00ADB5), // Border color
                                                     width: 2, // Border width
                                                   ),
@@ -263,6 +265,7 @@ class _BookmarkState extends State<Bookmark> {
           ),
         ),
       ),
+    ),
     );
   }
 }

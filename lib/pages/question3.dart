@@ -20,9 +20,10 @@ class _ThirdQuestionScreenState extends State<ThirdQuestionScreen> {
 
   void _goToHomePage() {
     if (selectedDuration != null) {
-      Navigator.pushReplacementNamed(
+      Navigator.pushNamedAndRemoveUntil(
         context,
-        '/home', // Navigate to the NavigatorPage route
+        '/home',
+        (route) => false, // Navigate to the NavigatorPage route
         arguments: {
           'subjects': widget.selectedSubjects,
           'difficulty': widget.selectedDifficulty,

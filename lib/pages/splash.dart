@@ -35,7 +35,10 @@ class _SplashScreenState extends State<SplashScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return PopScope(
+      canPop: false,
+      // Prevent back navigation
+    child: Scaffold(
        backgroundColor: Colors.white,
       body: Center(
         child: _controller.value.isInitialized
@@ -45,6 +48,7 @@ class _SplashScreenState extends State<SplashScreen> {
               )
             : CircularProgressIndicator(),
       ),
+    ),
     );
   }
 }

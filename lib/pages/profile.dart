@@ -6,7 +6,7 @@
   import 'package:firebase_storage/firebase_storage.dart';
   import 'package:cloud_firestore/cloud_firestore.dart';
   import 'package:flutter_application_1/bottomNav.dart';
-  
+
 
   class ProfilePage extends StatefulWidget {
     const ProfilePage({super.key});
@@ -471,8 +471,13 @@
                           padding: const EdgeInsets.all(16.0),  
                           child: ElevatedButton(
                             onPressed: () {
-                              FirebaseAuth.instance.signOut();
-                              Navigator.pushReplacementNamed(context, '/login');
+                              FirebaseAuth.instance.signOut().then((_) {
+                              Navigator.pushNamedAndRemoveUntil(
+                                context, 
+                                '/login', 
+                                (Route<dynamic> route) => false,
+                              );
+                            });
                             },
                             style: ElevatedButton.styleFrom(
                               backgroundColor: const Color.fromARGB(255, 255, 255, 255),
