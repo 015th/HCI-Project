@@ -12,8 +12,8 @@ class SettingsPage extends StatefulWidget {
 
 class _SettingsPageState extends State<SettingsPage> {
   User? user;
-  bool notificationsEnabled = true;
-  bool darkModeEnabled = false;
+  // bool notificationsEnabled = true;
+  // bool darkModeEnabled = false;
 
   @override
   void initState() {
@@ -37,7 +37,8 @@ class _SettingsPageState extends State<SettingsPage> {
     final newPasswordController = TextEditingController();
 
     bool reauthenticated = false;
-
+    const passwordPattern = r'^(?=.*[A-Z])(?=.*\d)(?=.*[!@#\$&*~]).{7,}$';
+    
     await showDialog(
       context: context,
       builder: (context) => StatefulBuilder(
@@ -79,7 +80,20 @@ class _SettingsPageState extends State<SettingsPage> {
                       const SnackBar(content: Text('Current password is incorrect')),
                     );
                   }
-                } else {
+                }  else {
+                final newPassword = newPasswordController.text.trim();
+
+                // Validate new password with regex
+                if (!RegExp(passwordPattern).hasMatch(newPassword)) {
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    const SnackBar(
+                      content: Text(
+                        'Password must be at least 7 characters, include 1 uppercase letter, 1 number, and 1 special character.',
+                      ),
+                    ),
+                  );
+                  return; // Stop further execution
+                }
                   try {
                     await user!.updatePassword(newPasswordController.text.trim());
                     Navigator.pop(context);
@@ -285,26 +299,26 @@ class _SettingsPageState extends State<SettingsPage> {
                 alignment: Alignment.centerLeft,
               ),
             ),
-            _buildSectionTitle('Preferences'),
-            SwitchListTile(
-              title: const Text('Notifications'),
-              value: notificationsEnabled,
-              onChanged: (val) {
-                setState(() {
-                  notificationsEnabled = val;
-                });
-              },
-            ),
-            SwitchListTile(
-              title: const Text('Dark Mode'),
-              value: darkModeEnabled,
-              onChanged: (val) {
-                setState(() {
-                  darkModeEnabled = val;
-                });
-                // TODO: Implement actual dark mode toggle
-              },
-            ),
+            // _buildSectionTitle('Preferences'),
+            // SwitchListTile(
+            //   title: const Text('Notifications'),
+            //   value: notificationsEnabled,
+            //   onChanged: (val) {
+            //     setState(() {
+            //       notificationsEnabled = val;
+            //     });
+            //   },
+            // ),
+            // SwitchListTile(
+            //   title: const Text('Dark Mode'),
+            //   value: darkModeEnabled,
+            //   onChanged: (val) {
+            //     setState(() {
+            //       darkModeEnabled = val;
+            //     });
+            //     // TODO: Implement actual dark mode toggle
+            //   },
+            // ),
             _buildSectionTitle('About'),
             ListTile(
               title: const Text('App Version'),

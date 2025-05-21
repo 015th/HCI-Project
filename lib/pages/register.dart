@@ -101,11 +101,39 @@ class _RegisterScreenState extends State<RegisterScreen> {
                 _buildDateOfBirthField(),
 
                 // Password Field with Validation
-                _buildPasswordField("Password", _passwordController, false),
+                _buildPasswordField("Password", _passwordController, false,
+                  validator: (value) {
+                    if (value == null || value.isEmpty) {
+                      return "Please enter your password";
+                    }
+                    if (value.length < 7) {
+                      return "Password must be more than 6 characters";
+                    }
+                    if (!RegExp(r'^(?=.*[A-Z])(?=.*\d)(?=.*[!@#\$&*~]).{7,}$')
+                        .hasMatch(value)) {
+                      return "Password must include 1 capital letter, 1 symbol, and 1 number";
+                    }
+                    else{
+                      return null;
+                    }
+                    
+                  }), 
 
                 // Confirm Password Field with Validation
                 _buildPasswordField(
-                    "Confirm Password", _confirmPasswordController, true),
+                  "Confirm Password",
+                  _confirmPasswordController,
+                  true,
+                  validator: (value) {
+                    if (value == null || value.isEmpty) {
+                      return "Please confirm your password";
+                    }
+                    if (value != _passwordController.text) {
+                      return "Passwords do not match";
+                    }
+                    return null;
+                  },
+                ),
 
                 const SizedBox(height: 10),
 
@@ -219,13 +247,17 @@ class _RegisterScreenState extends State<RegisterScreen> {
 
   // Password Field with Visibility Toggle and Validation
   Widget _buildPasswordField(
-      String label, TextEditingController controller, bool isConfirm) {
+      String label, TextEditingController controller, bool isConfirm, {
+        String? Function(String?)? validator, //  accept validator as a parameter
+}) {
+        
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 8),
       child: TextFormField(
         controller: controller,
         obscureText:
             isConfirm ? !_isConfirmPasswordVisible : !_isPasswordVisible,
+            autovalidateMode: AutovalidateMode.onUserInteraction,
         decoration: InputDecoration(
           labelText: label,
           border: OutlineInputBorder(),
@@ -250,16 +282,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
             },
           ),
         ),
-        validator: (value) {
-          if (value!.isEmpty) return "Please enter $label";
-          if (!isConfirm && value.length < 6) {
-            return "Password must be at least 6 characters";
-          }
-          if (isConfirm && value != _passwordController.text) {
-            return "Passwords do not match";
-          }
-          return null;
-        },
+        validator: validator,
       ),
     );
   }
